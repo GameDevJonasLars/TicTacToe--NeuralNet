@@ -18,7 +18,7 @@ public class GewinnenTest extends Thread {
 				|| fFelder[0][2].getiBesitzer() + fFelder[1][1].getiBesitzer() + fFelder[2][0].getiBesitzer() == 3) {
 			for (Feld[] felds : fFelder) {
 				for (Feld feld : felds) {
-					//feld.setUsable(false);
+					feld.setUsable(false);
 				}
 			}
 			try {
