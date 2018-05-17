@@ -5,7 +5,7 @@ public class Connection {
 	double dWeight;
 	
 	public Connection() {
-		dWeight = (Math.random()*2)-1;
+		dWeight = Math.random();
 	}
 
 }

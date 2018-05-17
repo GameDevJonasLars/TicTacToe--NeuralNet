@@ -1,6 +1,7 @@
 package com.network;
 
 import java.util.ArrayList;
+import com.SomeFunktions.*;
 
 public class Network {
 
@@ -8,6 +9,42 @@ public class Network {
 	private ArrayList<Layer> lNetwork = new ArrayList<Layer>();
 	private ArrayList<Double> dResults = new ArrayList<Double>();
 	private double fitness;
+	private ArrayList<Integer> iStructure = new ArrayList<Integer>();
+
+	public Network(ArrayList<Integer> iStructure) {
+		
+		this.iStructure = iStructure;
+		
+		int iNumOutputs;
+		iLayerNum = iStructure.size();
+		
+		for(int i = 0; i < iLayerNum; i++) {	
+			
+			if(i == iStructure.size() - 1) {
+				iNumOutputs = 0;
+			}else {
+				iNumOutputs = iStructure.get(i + 1);
+			}
+			
+			lNetwork.add(new Layer(iStructure.get(i), iNumOutputs));	
+		}
+	}
+	
+	public double[][][] getWeights(){
+		
+		double [][][] dWeights = 
+				new double [lNetwork.size()][ArrayListFunktions.maxI(iStructure)][ArrayListFunktions.maxI(iStructure)];
+		
+		for (int i = 0; i < lNetwork.size(); i++) {
+			for (int iZ = 0; iZ < lNetwork.get(i).nLayer.size(); iZ++) {
+				for (int iX = 0; iX < lNetwork.get(i).nLayer.get(iZ).cNeuron.size(); iX++) {
+					dWeights [i][iZ][iX] = lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight;				}
+			}
+		}
+		
+		return dWeights;
+		
+	}
 	
 	public double getFitness() {
 		return fitness;
@@ -21,23 +58,6 @@ public class Network {
 		return dResults;
 	}
 
-	public Network(ArrayList<Integer> iTopology) {
-		
-		int iNumOutputs;
-		iLayerNum = iTopology.size();
-		
-		for(int i = 0; i < iLayerNum; i++) {	
-			
-			if(i == iTopology.size() - 1) {
-				iNumOutputs = 0;
-			}else {
-				iNumOutputs = iTopology.get(i + 1);
-			}
-			
-			lNetwork.add(new Layer(iTopology.get(i), iNumOutputs));	
-		}
-	}
-	
 	public boolean feedFoward(ArrayList<Double> dInput) {
 		
 		if(dInput.size() == lNetwork.get(0).nLayer.size() - 1) {
