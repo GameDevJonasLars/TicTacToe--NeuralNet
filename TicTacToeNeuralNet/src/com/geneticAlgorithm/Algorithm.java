@@ -9,12 +9,12 @@ public class Algorithm {
 	int iInputsNum;
 	int iOutputsNum;
 	
-	public Algorithm(int iPopulationSize, ArrayList<Integer> iTopology) {
+	/*public Algorithm(int iPopulationSize, ArrayList<Integer> iTopology) {
 		
 		for(int i = 0; i < iPopulationSize; i++) {
 			population.add(new Network(iTopology));
 		}
-	}
+	}*/
 	
 	public void createPopulation(int iPopulationSize, int iInputsNum, int iOutputsNum) {
 		this.iInputsNum = iInputsNum;
@@ -22,24 +22,24 @@ public class Algorithm {
 		
 		for(int i = 0; i < iPopulationSize; i++) {
 			
-			ArrayList<Integer> tropology = new ArrayList<Integer>();
-			tropology.add(iInputsNum);
-			tropology.add(iOutputsNum);
+			ArrayList<Integer> iStructure = new ArrayList<Integer>();
+			iStructure.add(iInputsNum);
 			
 			if (iInputsNum >= 3) {
 				int iLayerNum = (int)(Math.random() * (iInputsNum-1)) + 2;
 				int iMinNeuronNum = (int) ((iInputsNum*2)/iLayerNum);
 				
-				for (int iZ = 0; i <= iLayerNum; i++) {
-					tropology.add((int)(Math.random() * iMinNeuronNum) + iMinNeuronNum);
+				for (int iZ = 0; iZ <= iLayerNum; iZ++) {
+					iStructure.add((int)(Math.random() * iMinNeuronNum) + iMinNeuronNum);
 				}
 			}
 			else {
 				int iLayerNum = 1;
-				tropology.add(iInputsNum*2);
+				iStructure.add(iInputsNum*2);
 			}
+			iStructure.add(iOutputsNum);
 			
-			population.add(new Network(tropology));
+			population.add(new Network(iStructure));
 		}
 	}
 	
