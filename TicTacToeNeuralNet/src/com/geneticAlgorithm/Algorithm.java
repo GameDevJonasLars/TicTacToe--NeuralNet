@@ -1,4 +1,4 @@
-package geneticAlgorithm;
+package com.geneticAlgorithm;
 
 import java.util.ArrayList;
 import com.network.*;
