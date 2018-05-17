@@ -29,7 +29,7 @@ public class Main implements ActionListener {
 		jfMainWindow.setResizable(true);
 		jfMainWindow.setSize(960, 990);
 		jbLocalSpielen.setBounds(150, 450, 300, 50);
-		jbNeuralSpielen.setBounds(600, 450, 300, 50);
+		jbNeuralSpielen.setBounds(540, 450, 300, 50);
 		jbLocalSpielen.addActionListener(this);
 		jbNeuralSpielen.addActionListener(this);
 		jbNeuralSpielen.setEnabled(false);
