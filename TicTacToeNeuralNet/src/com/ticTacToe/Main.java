@@ -32,6 +32,7 @@ public class Main implements ActionListener {
 		jbNeuralSpielen.setBounds(600, 450, 300, 50);
 		jbLocalSpielen.addActionListener(this);
 		jbNeuralSpielen.addActionListener(this);
+		jbNeuralSpielen.setEnabled(false);
 		jpMainMenu.add(jbLocalSpielen);
 		jpMainMenu.add(jbNeuralSpielen);
 
