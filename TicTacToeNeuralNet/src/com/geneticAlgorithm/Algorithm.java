@@ -49,6 +49,36 @@ public class Algorithm {
 		}
 	}
 	
+	public Boolean giveTaskToAll(ArrayList<Double> dInputs) {
+		
+		
+		if (dInputs.size() == iInputsNum) {
+			for (int i = 0; i < population.size(); i++) {
+				population.get(i).feedFoward(dInputs);
+			}
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	public ArrayList<Double> getRsults(int iNetworkNum) { 
+		ArrayList<Double> dResults = new ArrayList<Double>();
+
+		dResults = population.get(iNetworkNum).getdResults();
+		
+		return dResults;
+	}
+	
+	public ArrayList<ArrayList<Double>> getAllResults() {
+		ArrayList<ArrayList<Double>> dAllResults = new ArrayList<ArrayList<Double>>();
+		
+		for (int i = 0; i < population.size(); i++) {
+			dAllResults.add(population.get(i).getdResults());
+		}
+		return dAllResults;
+	}
+	
 	public void selection() {
 		
 	}
