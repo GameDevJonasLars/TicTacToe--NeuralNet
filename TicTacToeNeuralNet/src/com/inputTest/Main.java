@@ -37,11 +37,20 @@ public class Main {
 
 			net.feedFoward(test);
 		
+
 		net.feedFoward(test);
 		
 		
 		System.out.println((net.getdResults().get(0)+1)*4);
+<<<<<<< HEAD
 		}
+=======
+
+
+			//System.out.println((net.getdResults().get(0)));
+		}
+
+>>>>>>> 5804e3af14ca20b7b85d9daffe99cc5045fc40d7
 	}
 
 }
