@@ -44,7 +44,7 @@ public class Main {
 		System.out.println((net.getdResults().get(0)+1)*4);
 
 
-			System.out.println((net.getdResults().get(0)));
+			//System.out.println((net.getdResults().get(0)));
 		}
 
 	}
