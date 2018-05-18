@@ -31,7 +31,7 @@ public class Main {
 		net.feedFoward(test);
 		
 		
-		System.out.println((net.getdResults().get(0)+1)*4.5);
+		System.out.println((net.getdResults().get(0)+1)*4);
 
 	}
 
