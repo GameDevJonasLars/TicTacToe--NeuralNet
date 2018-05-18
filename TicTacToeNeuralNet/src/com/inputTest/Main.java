@@ -42,6 +42,8 @@ public class Main {
 		
 		
 		System.out.println((net.getdResults().get(0)+1)*4);
+
 		}
+
 	}
 }
