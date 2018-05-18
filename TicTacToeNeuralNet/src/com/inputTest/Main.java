@@ -37,10 +37,15 @@ public class Main {
 
 			net.feedFoward(test);
 		
+
 		net.feedFoward(test);
 		
 		
 		System.out.println((net.getdResults().get(0)+1)*4);
+
+
+			System.out.println((net.getdResults().get(0)));
+		}
 
 	}
 
