@@ -9,13 +9,6 @@ public class Algorithm {
 	int iInputsNum;
 	int iOutputsNum;
 	
-	/*public Algorithm(int iPopulationSize, ArrayList<Integer> iTopology) {
-		
-		for(int i = 0; i < iPopulationSize; i++) {
-			population.add(new Network(iTopology));
-		}
-	}*/
-	
 	public void createPopulation(int iPopulationSize, int iInputsNum, int iOutputsNum) {
 		this.iInputsNum = iInputsNum;
 		this.iOutputsNum = iOutputsNum;
@@ -54,6 +47,30 @@ public class Algorithm {
 		}else {
 			return false;
 		}
+	}
+	
+	public void selection() {
+		
+	}
+	
+	public void breed() {
+		
+	}
+	
+	public void mutate(int iNetworkNum) {
+		
+	}
+	
+	public void evolve() {
+		
+	}
+	
+	public void save() {
+		
+	}
+	
+	public void loadPopulation() {
+		
 	}
 }
 

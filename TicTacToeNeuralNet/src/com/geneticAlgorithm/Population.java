@@ -1,9 +1,9 @@
 package com.geneticAlgorithm;
 
-public class Population {
+public class Population extends Algorithm {
 
-	public Population() {
-		// TODO Auto-generated constructor stub
+	public Population(int iPopulationSize, int iInputsNum, int iOutputsNum) {
+		createPopulation(iPopulationSize, iInputsNum, iOutputsNum);
 	}
 
 }
