@@ -79,6 +79,28 @@ public class Algorithm {
 		return dAllResults;
 	}
 	
+	public double calcFitness(ArrayList<Double> dResults, ArrayList<Double> dExpectedResults) {
+		if (dResults.size() == dExpectedResults.size()) {
+			double fitness = 0;
+			
+			for (int i = 0; i < dResults.size(); i++) {
+				fitness += Math.abs(dExpectedResults.get(i) - dResults.get(i));
+			}
+			
+			fitness = fitness / dResults.size();
+			fitness = 100 - fitness;
+			
+			return fitness;
+		}
+		return 1000;
+	}
+	
+	public void automaticEvolve (ArrayList<Double> dInputs, ArrayList<Double> dResults) {
+		giveTaskToAll(dInputs);
+		
+		
+	}
+	
 	public void selection() {
 		
 	}
