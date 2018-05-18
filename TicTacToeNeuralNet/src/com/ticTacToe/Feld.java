@@ -36,7 +36,7 @@ public class Feld {
 		this.jbFeld = jbFeld;
 	}
 	public void setBesitzer(int iBesizer) {
-		// 0=keiner 1=kreuz 2=kreis
+		// 0=keiner 1=kreuz 4=kreis
 		
 		switch (iBesizer) {
 		case 0:
