@@ -9,8 +9,12 @@ public class Main implements ActionListener {
 	JFrame jfMainWindow;
 	JPanel jpMainGame;
 	JPanel jpMainMenu;
+	JPanel jpNeuralNet;
 	JButton jbLocalSpielen;
 	JButton jbNeuralSpielen;
+	JButton jbLoadNet;
+	JButton jbCreateNet;
+	JButton jbEvolveNet;
 	Feld fFelder[][];
 	GewinnenTest gtGewinnen;
 	int iSpieler;
@@ -19,22 +23,35 @@ public class Main implements ActionListener {
 	public Main() {
 		//
 		jfMainWindow = new JFrame("Tic Tac Toe");
+		jpNeuralNet = new JPanel();
 		jpMainMenu = new JPanel();
 		jpMainGame = new JPanel();
 		jbLocalSpielen = new JButton("Multiplayer");
 		jbNeuralSpielen = new JButton("Neural Net");
+		jbCreateNet = new JButton("Create Network");
+		jbEvolveNet = new JButton("Evolve Network");
+		jbLoadNet = new JButton("Load Network");
 		jfMainWindow.setDefaultCloseOperation(jfMainWindow.EXIT_ON_CLOSE);
 		jpMainGame.setLayout(null);
 		jpMainMenu.setLayout(null);
+		jpNeuralNet.setLayout(null);
 		jfMainWindow.setResizable(true);
 		jfMainWindow.setSize(960, 990);
 		jbLocalSpielen.setBounds(150, 450, 300, 50);
 		jbNeuralSpielen.setBounds(540, 450, 300, 50);
+		jbCreateNet.setBounds(345, 150, 300, 50);
+		jbEvolveNet.setBounds(345, 250, 300, 50);
+		jbLoadNet.setBounds(345, 350, 300, 50);
+		jbCreateNet.addActionListener(this);
+		jbEvolveNet.addActionListener(this);
+		jbLoadNet.addActionListener(this);
 		jbLocalSpielen.addActionListener(this);
 		jbNeuralSpielen.addActionListener(this);
-		jbNeuralSpielen.setEnabled(false);
 		jpMainMenu.add(jbLocalSpielen);
 		jpMainMenu.add(jbNeuralSpielen);
+		jpNeuralNet.add(jbCreateNet);
+		jpNeuralNet.add(jbEvolveNet);
+		jpNeuralNet.add(jbLoadNet);
 
 		fFelder = new Feld[3][3];
 		for (int i = 0; i < 3; i++) {
@@ -64,6 +81,12 @@ public class Main implements ActionListener {
 			jfMainWindow.remove(jpMainMenu);
 			jfMainWindow.validate();
 			bPlaying = true;
+		}
+		if (ae.getSource() == jbNeuralSpielen) {
+			jfMainWindow.add(jpNeuralNet);
+			jfMainWindow.remove(jpMainMenu);
+			jfMainWindow.validate();
+			bPlaying = false;
 		}
 		if (bPlaying) {
 			if (ae.getSource() == fFelder[0][0].getJbFeld()) {
