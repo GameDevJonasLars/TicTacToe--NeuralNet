@@ -10,7 +10,6 @@ public class Layer {
 		
 		for(int i = 0; i <= iNeuronNum; i++) {		
 			nLayer.add(new Neuron(i, iNumOutputs));
-			System.out.println("Made a New Neuron");
 		}
 		nLayer.get(nLayer.size()-1).setdOutput(1.0);
 	}
