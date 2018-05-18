@@ -7,7 +7,7 @@ public class Neuron {
 	private int iIndex;
 	private double dOutput;
 
-	ArrayList<Connection> cNeuron = new ArrayList<Connection>();
+	public ArrayList<Connection> cNeuron = new ArrayList<Connection>();
 	
 	public Neuron(int iIndex, int iOutputs) {
 		this.iIndex = iIndex;

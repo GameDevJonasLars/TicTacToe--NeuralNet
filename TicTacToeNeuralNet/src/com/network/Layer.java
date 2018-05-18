@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class Layer {
 
-	ArrayList<Neuron> nLayer = new ArrayList<Neuron>();;
+	public ArrayList<Neuron> nLayer = new ArrayList<Neuron>();;
 	
 	public Layer(int iNeuronNum, int iNumOutputs) {
 		

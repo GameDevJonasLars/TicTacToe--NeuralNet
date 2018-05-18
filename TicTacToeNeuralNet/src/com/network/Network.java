@@ -6,7 +6,7 @@ import com.SomeFunktions.*;
 public class Network {
 
 	static private int iLayerNum;
-	private ArrayList<Layer> lNetwork = new ArrayList<Layer>();
+	public ArrayList<Layer> lNetwork = new ArrayList<Layer>();
 	private ArrayList<Double> dResults = new ArrayList<Double>();
 	private double fitness;
 	private ArrayList<Integer> iStructure = new ArrayList<Integer>();
