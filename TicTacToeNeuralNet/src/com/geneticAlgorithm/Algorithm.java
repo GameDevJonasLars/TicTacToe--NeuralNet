@@ -121,17 +121,25 @@ public class Algorithm {
 
 	}
 
-	public void mutate(int iNetworkNum) {
-
-		for (int i = 0; i < population.get(i).lNetwork.size(); i++) {
-			for (int iZ = 0; iZ < population.get(i).lNetwork.get(i).nLayer.size(); iZ++) {
-				for (int iX = 0; iX < population.get(i).lNetwork.get(i).nLayer.get(iZ).cNeuron.size(); iX++) {
-					population.get(i).lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight += (Math.random() * 0.1)
-							- 0.1;
+	public int mutate(int iNetworkNum) {
+		int iNetworkNumCopy = copyNet(iNetworkNum);
+		for (int i = 0; i < population.get(iNetworkNumCopy).lNetwork.size(); i++) {
+			for (int iZ = 0; iZ < population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.size(); iZ++) {
+				for (int iX = 0; iX < population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.get(iZ).cNeuron.size(); iX++) {
+					population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight += (Math.random() * 0.1)
+							- 0.05;
 				}
 			}
 		}
+		return iNetworkNumCopy;
 
+	}
+	
+	public int copyNet(int iNeuralNet) {
+		population.add(population.get(iNeuralNet));
+		alInputNum.add(alInputNum.get(iNeuralNet));
+		alOutputNum.add(alOutputNum.get(iNeuralNet));
+		return population.size()-1;
 	}
 
 	public void evolve() {

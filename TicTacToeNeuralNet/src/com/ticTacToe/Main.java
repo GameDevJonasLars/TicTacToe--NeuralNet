@@ -3,7 +3,6 @@ package com.ticTacToe;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.swing.*;
 
@@ -23,7 +22,8 @@ public class Main implements ActionListener {
 	GewinnenTest gtGewinnen;
 	Algorithm aGeneticAlg;
 	int iSpieler;
-	int iNeuralNet;
+	int iNeuralNet1;
+	int iNeuralNet2;
 	boolean bPlaying;
 	static Main game;
 
@@ -39,6 +39,7 @@ public class Main implements ActionListener {
 		jbEvolveNet = new JButton("Evolve Network");
 		jbLoadNet = new JButton("Load Network");
 		aGeneticAlg = new Algorithm();
+		jfMainWindow.setResizable(false);
 		jfMainWindow.setDefaultCloseOperation(jfMainWindow.EXIT_ON_CLOSE);
 		jpMainGame.setLayout(null);
 		jpMainMenu.setLayout(null);
@@ -85,11 +86,6 @@ public class Main implements ActionListener {
 
 
 
-	public int getiNeuralNet() {
-		return iNeuralNet;
-	}
-
-
 
 	public Algorithm getaGeneticAlg() {
 		return aGeneticAlg;
@@ -134,7 +130,7 @@ public class Main implements ActionListener {
 						} else {
 							iSpieler = 1;
 						}
-						new GewinnenTest(fFelder).start();
+						//new GewinnenTest(fFelder).start();
 						
 						return true;
 					}
@@ -173,7 +169,7 @@ public class Main implements ActionListener {
 			jfMainWindow.add(jpMainGame);
 			jfMainWindow.remove(jpNeuralNet);
 			jfMainWindow.validate();
-			bPlaying = true;
+			bPlaying = false;
 			ArrayList<Integer> struct = new ArrayList<Integer>();
 			struct.add(9);
 			
@@ -186,8 +182,10 @@ public class Main implements ActionListener {
 			struct.add(2);
 			
 			struct.add(1);
-			iNeuralNet = aGeneticAlg.createPopulation(struct,9,1);
-			new InputThread(game).start();
+			iNeuralNet1 = aGeneticAlg.createPopulation(struct,9,1);
+			iNeuralNet2 = aGeneticAlg.createPopulation(struct,9,1);
+			new TrainControlThread(game, iNeuralNet1, iNeuralNet2, 1, 4).start();
+
 		}
 		if (bPlaying) {
 			if (ae.getSource() == fFelder[0][0].getJbFeld()) {
