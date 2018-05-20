@@ -112,6 +112,12 @@ public class Main implements ActionListener {
 		return game;
 	}
 
+	
+
+	public void setiSpieler(int iSpieler) {
+		this.iSpieler = iSpieler;
+	}
+
 
 
 	public boolean setFeld(int iFeld) {

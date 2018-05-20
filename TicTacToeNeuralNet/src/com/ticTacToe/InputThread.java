@@ -25,15 +25,8 @@ public class InputThread extends Thread{
 				main.getaGeneticAlg().giveTask(dInputs, main.getiNeuralNet());
 				double dResult = (main.getaGeneticAlg().getResults(main.getiNeuralNet()).get(0)+1)*4;
 				System.out.println(dResult);
-
-				while(!main.setFeld((int)dResult)) {
-					int b = 10;
-					for (int i = 0; i <= 8; i++) {
-						if (Math.abs(dResult-i)<b) {
-							b = i;
-						}
-						dResult = b;
-					}
+				if (!main.setFeld((int)dResult)) {
+					main.setiSpieler(1);
 				}
 			}
 			try {
