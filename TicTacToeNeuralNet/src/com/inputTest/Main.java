@@ -1,12 +1,13 @@
 package com.inputTest;
 import java.util.ArrayList;
 
+import com.geneticAlgorithm.Algorithm;
 import com.network.*;
 
 public class Main {
 
 	public static void main(String[] args) {
-		
+		Algorithm alg = new Algorithm();
 		for (int i = 0; i < 10; i++) {
 			
 			ArrayList<Integer> topology = new ArrayList<Integer>();
@@ -20,8 +21,8 @@ public class Main {
 			topology.add(3);
 			topology.add(2);
 			topology.add(1);
-			
-			Network net = new Network(topology);
+			int net = alg.createPopulation(topology,9,1);
+//			Network net = new Network(topology);
 			
 			ArrayList<Double> test = new ArrayList<Double>();
 		
@@ -34,14 +35,15 @@ public class Main {
 			test.add(4.0);
 			test.add(4.0);
 			test.add(0.0);
-
-			net.feedFoward(test);
+			alg.giveTask(test, net);
+			alg.giveTask(test, net);
+	
 		
 
-		net.feedFoward(test);
+		//net.feedFoward(test);
 		
 		
-		System.out.println((net.getdResults().get(0)+1)*4);
+		System.out.println((alg.getResults(net).get(0)+1)*4);
 
 		}
 

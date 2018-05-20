@@ -2,8 +2,12 @@ package com.ticTacToe;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.*;
+
+import com.geneticAlgorithm.Algorithm;
 
 public class Main implements ActionListener {
 	JFrame jfMainWindow;
@@ -17,8 +21,11 @@ public class Main implements ActionListener {
 	JButton jbEvolveNet;
 	Feld fFelder[][];
 	GewinnenTest gtGewinnen;
+	Algorithm aGeneticAlg;
 	int iSpieler;
+	int iNeuralNet;
 	boolean bPlaying;
+	static Main game;
 
 	public Main() {
 		//
@@ -31,6 +38,7 @@ public class Main implements ActionListener {
 		jbCreateNet = new JButton("Create Network");
 		jbEvolveNet = new JButton("Evolve Network");
 		jbLoadNet = new JButton("Load Network");
+		aGeneticAlg = new Algorithm();
 		jfMainWindow.setDefaultCloseOperation(jfMainWindow.EXIT_ON_CLOSE);
 		jpMainGame.setLayout(null);
 		jpMainMenu.setLayout(null);
@@ -68,9 +76,75 @@ public class Main implements ActionListener {
 		jfMainWindow.repaint();
 		iSpieler = 1;
 	}
+	
+	
+
+	public Feld[][] getfFelder() {
+		return fFelder;
+	}
+
+
+
+	public int getiNeuralNet() {
+		return iNeuralNet;
+	}
+
+
+
+	public Algorithm getaGeneticAlg() {
+		return aGeneticAlg;
+	}
+
+
+
+	public int getiSpieler() {
+		return iSpieler;
+	}
+
+
+
+	public boolean isbPlaying() {
+		return bPlaying;
+	}
+	
+	
+	public static Main getGame() {
+		return game;
+	}
+
+
+
+	public boolean setFeld(int iFeld) {
+		int n = 0;
+		for (Feld[] felds : fFelder) {
+			for (Feld feld : felds) {
+				
+				if (iFeld == n) {
+					if (feld.getiBesitzer() == 0) {
+						feld.setBesitzer(iSpieler);
+						feld.setUsable(false);
+						if (iSpieler == 1) {
+							iSpieler = 4;
+						} else {
+							iSpieler = 1;
+						}
+						new GewinnenTest(fFelder).start();
+						
+						return true;
+					}
+					else {
+						return false;
+					}
+				}
+				n++;
+			}
+		}
+		return false;
+	}
+
 
 	public static void main(String[] args) {
-		Main game = new Main();
+		game = new Main();
 		game.jfMainWindow.add(game.jpMainMenu);
 		// game.gtGewinnen.start();
 	}
@@ -81,12 +155,33 @@ public class Main implements ActionListener {
 			jfMainWindow.remove(jpMainMenu);
 			jfMainWindow.validate();
 			bPlaying = true;
+			
 		}
 		if (ae.getSource() == jbNeuralSpielen) {
 			jfMainWindow.add(jpNeuralNet);
 			jfMainWindow.remove(jpMainMenu);
 			jfMainWindow.validate();
 			bPlaying = false;
+		}
+		if (ae.getSource() == jbCreateNet) {
+			jfMainWindow.add(jpMainGame);
+			jfMainWindow.remove(jpNeuralNet);
+			jfMainWindow.validate();
+			bPlaying = true;
+			ArrayList<Integer> struct = new ArrayList<Integer>();
+			struct.add(9);
+			
+			struct.add(8);
+			struct.add(7);
+			struct.add(6);
+			struct.add(5);
+			struct.add(4);
+			struct.add(3);
+			struct.add(2);
+			
+			struct.add(1);
+			iNeuralNet = aGeneticAlg.createPopulation(struct,9,1);
+			new InputThread(game).start();
 		}
 		if (bPlaying) {
 			if (ae.getSource() == fFelder[0][0].getJbFeld()) {

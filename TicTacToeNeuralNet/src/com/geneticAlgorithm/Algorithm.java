@@ -1,6 +1,9 @@
 package com.geneticAlgorithm;
 
 import java.util.ArrayList;
+
+import javax.xml.crypto.KeySelector.Purpose;
+
 import com.network.*;
 
 public class Algorithm {
@@ -9,7 +12,7 @@ public class Algorithm {
 	int iInputsNum;
 	int iOutputsNum;
 	
-	public void createPopulation(int iPopulationSize, int iInputsNum, int iOutputsNum) {
+	public int createRandomPopulation(int iPopulationSize, int iInputsNum, int iOutputsNum) {
 		this.iInputsNum = iInputsNum;
 		this.iOutputsNum = iOutputsNum;
 		
@@ -33,7 +36,17 @@ public class Algorithm {
 			iStructure.add(iOutputsNum);
 			
 			population.add(new Network(iStructure));
+			return population.size()-1;
 		}
+		return 0;
+		
+	}
+	public int createPopulation(ArrayList<Integer> alNetStruct, int iInputsNum, int iOutputsNum) {
+		this.iInputsNum = iInputsNum;
+		this.iOutputsNum = iOutputsNum;
+		population.add(new Network(alNetStruct));
+		return population.size()-1;
+		
 	}
 	
 	public void setFitness(int iNetworkNum, double dFitness) {
@@ -62,7 +75,7 @@ public class Algorithm {
 		}
 	}
 	
-	public ArrayList<Double> getRsults(int iNetworkNum) { 
+	public ArrayList<Double> getResults(int iNetworkNum) { 
 		ArrayList<Double> dResults = new ArrayList<Double>();
 
 		dResults = population.get(iNetworkNum).getdResults();
