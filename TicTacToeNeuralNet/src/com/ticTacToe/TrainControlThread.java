@@ -41,21 +41,21 @@ public class TrainControlThread extends Thread {
 				}
 				
 			}
-			if (iKreisPunkte < iKreuzPunkte) {
+			if (iKreisPunkte < iKreuzPunkte&&(iKreisPunkte<0&&iKreuzPunkte<0)) {
 				iNeural2 = main.getaGeneticAlg().mutate(iNeural1);
 			}
-			else if(iKreisPunkte > iKreuzPunkte){
+			else if(iKreisPunkte > iKreuzPunkte&&(iKreisPunkte<0&&iKreuzPunkte<0)){
 				iNeural1 = main.getaGeneticAlg().mutate(iNeural2);
 			}
 			else {
 				ArrayList<Integer> alNetStruct = new ArrayList<Integer>();
 				alNetStruct.add(9);
 				alNetStruct.add(10);
-				alNetStruct.add(10);
-				alNetStruct.add(10);
-				alNetStruct.add(10);
-				alNetStruct.add(10);
-				alNetStruct.add(10);
+				alNetStruct.add(11);
+				alNetStruct.add(12);
+				alNetStruct.add(13);
+				alNetStruct.add(12);
+				alNetStruct.add(11);
 				alNetStruct.add(10);
 				alNetStruct.add(1);
 				iNeural2 = main.getaGeneticAlg().createPopulation(alNetStruct, 9, 1);
@@ -67,7 +67,7 @@ public class TrainControlThread extends Thread {
 				
 			}
 			try {
-				Thread.sleep(1);
+				Thread.sleep(10);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

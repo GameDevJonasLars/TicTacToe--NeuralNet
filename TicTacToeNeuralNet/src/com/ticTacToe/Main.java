@@ -174,11 +174,11 @@ public class Main implements ActionListener {
 			struct.add(9);
 			
 			struct.add(10);
-			struct.add(10);
-			struct.add(10);
-			struct.add(10);
-			struct.add(10);
-			struct.add(10);
+			struct.add(11);
+			struct.add(12);
+			struct.add(13);
+			struct.add(12);
+			struct.add(11);
 			struct.add(10);
 			
 			struct.add(1);

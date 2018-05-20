@@ -51,7 +51,6 @@ public class InputThread extends Thread {
 					// TODO: handle exception
 				}
 			}
-			if (main.getiSpieler() == iZeichen) {
 				ArrayList<Double> dInputs = new ArrayList<Double>();
 				dInputs.add((double) (feldZahlen[0]));
 				dInputs.add((double) (feldZahlen[1]));
@@ -73,9 +72,9 @@ public class InputThread extends Thread {
 					}
 
 				}
-			}
+			
 			try {
-				Thread.sleep(1);
+				Thread.sleep(10);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
