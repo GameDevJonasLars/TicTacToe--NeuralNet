@@ -1,5 +1,7 @@
 package com.ticTacToe;
 
+import java.util.ArrayList;
+
 public class TrainControlThread extends Thread {
 	Main main;
 	int iNeural1;
@@ -42,8 +44,21 @@ public class TrainControlThread extends Thread {
 			if (iKreisPunkte < iKreuzPunkte) {
 				iNeural2 = main.getaGeneticAlg().mutate(iNeural1);
 			}
-			else {
+			else if(iKreisPunkte > iKreuzPunkte){
 				iNeural1 = main.getaGeneticAlg().mutate(iNeural2);
+			}
+			else {
+				ArrayList<Integer> alNetStruct = new ArrayList<Integer>();
+				alNetStruct.add(9);
+				alNetStruct.add(10);
+				alNetStruct.add(10);
+				alNetStruct.add(10);
+				alNetStruct.add(10);
+				alNetStruct.add(10);
+				alNetStruct.add(10);
+				alNetStruct.add(10);
+				alNetStruct.add(1);
+				iNeural2 = main.getaGeneticAlg().createPopulation(alNetStruct, 9, 1);
 			}
 			for(Feld[] felds:main.getfFelder()) {
 				for (Feld feld : felds) {

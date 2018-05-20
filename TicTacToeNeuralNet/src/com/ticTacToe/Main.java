@@ -173,13 +173,13 @@ public class Main implements ActionListener {
 			ArrayList<Integer> struct = new ArrayList<Integer>();
 			struct.add(9);
 			
-			struct.add(8);
-			struct.add(7);
-			struct.add(6);
-			struct.add(5);
-			struct.add(4);
-			struct.add(3);
-			struct.add(2);
+			struct.add(10);
+			struct.add(10);
+			struct.add(10);
+			struct.add(10);
+			struct.add(10);
+			struct.add(10);
+			struct.add(10);
 			
 			struct.add(1);
 			iNeuralNet1 = aGeneticAlg.createPopulation(struct,9,1);
