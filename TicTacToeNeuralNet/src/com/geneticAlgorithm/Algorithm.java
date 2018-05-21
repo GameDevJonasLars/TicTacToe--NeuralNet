@@ -179,8 +179,8 @@ public class Algorithm {
 		for (int i = 0; i < population.get(iNetworkNumCopy).lNetwork.size(); i++) {
 			for (int iZ = 0; iZ < population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.size(); iZ++) {
 				for (int iX = 0; iX < population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.get(iZ).cNeuron.size(); iX++) {
-					population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight += (Math.random() * (0.2*iStrength))
-							- (0.1*iStrength);
+					population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight += (Math.random() * (0.1*iStrength))
+							- (0.05*iStrength);
 				}
 			}
 		}
