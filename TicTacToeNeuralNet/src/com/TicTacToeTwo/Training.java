@@ -7,7 +7,7 @@ import com.geneticAlgorithm.Population;
 public class Training extends Thread {
 
 	int iAIAtTurn = 1;
-	int iSpeed = 100;
+	int iSpeed = 2000;
 	ArrayList<Double> dInputsAI1;
 	ArrayList<Double> dInputsAI2;
 	boolean failed1;
@@ -41,6 +41,8 @@ public class Training extends Thread {
 				
 				if (Main.gui.setFeld((int) (dResult))) {
 					dInputsAI1.set((int) (dResult), 1.0);
+					dInputsAI2.set((int) (dResult), 4.0);
+					System.out.println(dInputsAI1);
 				}else {
 					failed1 = true;
 				}
@@ -56,6 +58,7 @@ public class Training extends Thread {
 				
 				if (Main.gui.setFeld((int) (dResult))) {
 					dInputsAI2.set((int) (dResult), 1.0);
+					dInputsAI1.set((int) (dResult), 4.0);
 				}else {
 					failed2 = true;
 				}
@@ -67,6 +70,13 @@ public class Training extends Thread {
 			if(failed1 & failed2) {
 				Main.pop = new Population(2, 9, 1);
 				Main.gui.reset();
+				for (int i = 0; i < 9; i++) {
+					dInputsAI1.set(i, 0.0);
+				}
+				
+				for (int i = 0; i < 9; i++) {
+					dInputsAI2.set(i, 0.0);
+				}
 				failed1 = false;
 				failed2 = false;
 			}
