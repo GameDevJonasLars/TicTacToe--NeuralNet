@@ -169,15 +169,17 @@ public class Main implements ActionListener {
 			jfMainWindow.validate();
 			bPlaying = false;
 			ArrayList<Integer> struct = new ArrayList<Integer>();
-			struct.add(9);
+			struct.add(18);
 			
 			struct.add(6);
+			struct.add(12);
 			struct.add(5);
+			struct.add(11);
 			struct.add(3);
 			
 			struct.add(1);
-			iNeuralNet1 = aGeneticAlg.createPopulation(struct,9,1);
-			iNeuralNet2 = aGeneticAlg.createPopulation(struct,9,1);
+			iNeuralNet1 = aGeneticAlg.createPopulation(struct,18,1);
+			iNeuralNet2 = aGeneticAlg.createPopulation(struct,18,1);
 			new TrainControlThread(game, iNeuralNet1, iNeuralNet2, 1, -1).start();
 
 		}
