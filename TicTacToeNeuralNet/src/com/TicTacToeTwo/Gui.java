@@ -6,7 +6,6 @@ import javax.swing.JPanel;
 
 import com.geneticAlgorithm.Algorithm;
 import com.geneticAlgorithm.Population;
-import com.ticTacToe.Feld;
 
 public class Gui {
 	

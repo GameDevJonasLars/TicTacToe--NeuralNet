@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 import com.geneticAlgorithm.Population;
-import com.ticTacToe.InputThread;
+
 
 public class ButtonHandler implements ActionListener {
 
