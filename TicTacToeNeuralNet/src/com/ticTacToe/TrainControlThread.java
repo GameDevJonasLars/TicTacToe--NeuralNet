@@ -27,6 +27,7 @@ public class TrainControlThread extends Thread {
 			try {
 				itNet1.join();
 				itNet2.join();
+				System.out.println("HALLO");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
@@ -35,30 +36,32 @@ public class TrainControlThread extends Thread {
 					if (feld.getiBesitzer() == 1) {
 						iKreuzPunkte++;
 					}
-					if (feld.getiBesitzer() == 4) {
+					if (feld.getiBesitzer() == -1) {
 						iKreisPunkte++;
 					}
 				}
 				
 			}
-			if (iKreisPunkte < iKreuzPunkte&&(iKreisPunkte<0&&iKreuzPunkte<0)) {
+			main.jfMainWindow.setTitle("Tic Tac Toe Kreuz: "+iKreuzPunkte+" Kreis: "+iKreisPunkte);
+			System.out.println("Kreis"+iKreisPunkte+"Kreuz"+iKreuzPunkte);
+			if (iKreisPunkte < iKreuzPunkte) {
 				iNeural2 = main.getaGeneticAlg().mutate(iNeural1);
 			}
-			else if(iKreisPunkte > iKreuzPunkte&&(iKreisPunkte<0&&iKreuzPunkte<0)){
+			else if(iKreisPunkte > iKreuzPunkte){
 				iNeural1 = main.getaGeneticAlg().mutate(iNeural2);
 			}
 			else {
-				ArrayList<Integer> alNetStruct = new ArrayList<Integer>();
-				alNetStruct.add(9);
-				alNetStruct.add(10);
-				alNetStruct.add(11);
-				alNetStruct.add(12);
-				alNetStruct.add(13);
-				alNetStruct.add(12);
-				alNetStruct.add(11);
-				alNetStruct.add(10);
-				alNetStruct.add(1);
-				iNeural2 = main.getaGeneticAlg().createPopulation(alNetStruct, 9, 1);
+				/*ArrayList<Integer> struct = new ArrayList<Integer>();
+				struct.add(9);
+				
+				struct.add(6);
+				struct.add(5);
+				struct.add(3);
+				
+				struct.add(1);
+				iNeural1 = main.getaGeneticAlg().createPopulation(struct, 9, 1);*/
+				iNeural1 = main.getaGeneticAlg().mutate(iNeural1);
+				iNeural2 = main.getaGeneticAlg().mutate(iNeural2);
 			}
 			for(Feld[] felds:main.getfFelder()) {
 				for (Feld feld : felds) {
@@ -67,7 +70,7 @@ public class TrainControlThread extends Thread {
 				
 			}
 			try {
-				Thread.sleep(10);
+				Thread.sleep(1);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

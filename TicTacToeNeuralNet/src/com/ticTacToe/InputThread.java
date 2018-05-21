@@ -16,34 +16,35 @@ public class InputThread extends Thread {
 	}
 
 	public void run() {
-		int[] feldZahlen = new int[9];
-		int v = 0;
-		if (iZeichen == 4) {
-			for (Feld[] felds : main.getfFelder()) {
-				for (Feld feld : felds) {
-					if (feld.getiBesitzer() == 1) {
-						feldZahlen[v] = 4;
-					}
-					if (feld.getiBesitzer() == 4) {
-						feldZahlen[v] = 1;
-					}
-					v++;
-				}
-			}
-		} else {
-			for (Feld[] felds : main.getfFelder()) {
-				for (Feld feld : felds) {
-					if (feld.getiBesitzer() == 1) {
-						feldZahlen[v] = 4;
-					}
-					if (feld.getiBesitzer() == 4) {
-						feldZahlen[v] = 1;
-					}
-					v++;
-				}
-			}
-		}
+		
 		for (int n = 0; n < 9; n++) {
+			int[] feldZahlen = new int[9];
+			int v = 0;
+			if (iZeichen == 1) {
+				for (Feld[] felds : main.getfFelder()) {
+					for (Feld feld : felds) {
+						if (feld.getiBesitzer() == 1) {
+							feldZahlen[v] = 1;
+						}
+						if (feld.getiBesitzer() == -1) {
+							feldZahlen[v] = -1;
+						}
+						v++;
+					}
+				}
+			} else {
+				for (Feld[] felds : main.getfFelder()) {
+					for (Feld feld : felds) {
+						if (feld.getiBesitzer() == 1) {
+							feldZahlen[v] = -1;
+						}
+						if (feld.getiBesitzer() == -1) {
+							feldZahlen[v] = 1;
+						}
+						v++;
+					}
+				}
+			}
 			while(main.getiSpieler() != iZeichen) {
 				try {
 					Thread.sleep(1);
@@ -62,19 +63,15 @@ public class InputThread extends Thread {
 				dInputs.add((double) (feldZahlen[7]));
 				dInputs.add((double) (feldZahlen[8]));
 				main.getaGeneticAlg().giveTask(dInputs, iNeural);
-				double dResult = (main.getaGeneticAlg().getResults(iNeural).get(0) + 1) * 4;
+				double dResult = (main.getaGeneticAlg().getResults(iNeural).get(0) + 1) * 4.4;
 				System.out.println(dResult);
 				if (!main.setFeld((int) dResult)) {
-					if (iZeichen == 4) {
-						main.setiSpieler(1);
-					} else {
-						main.setiSpieler(4);
-					}
+					main.setiSpieler(main.getiSpieler() * -1);
 
 				}
 			
 			try {
-				Thread.sleep(10);
+				Thread.sleep(1);
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

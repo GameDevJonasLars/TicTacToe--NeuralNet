@@ -55,7 +55,7 @@ public class Feld {
 			jbFeld.setDisabledIcon(new ImageIcon("res/feldKreuz.png"));
 			jbFeld.repaint();
 			break;
-		case 4:
+		case -1:
 			this.iBesitzer = iBesizer;
 			jbFeld.setIcon(new ImageIcon(
 					new ImageIcon("res/feldKreis.png").getImage().getScaledInstance(300, 300, Image.SCALE_SMOOTH)));
