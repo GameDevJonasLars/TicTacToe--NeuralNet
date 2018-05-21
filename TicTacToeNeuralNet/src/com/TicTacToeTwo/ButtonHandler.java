@@ -23,6 +23,7 @@ public class ButtonHandler implements ActionListener {
 			Main.gui.jfMainWindow.remove(Main.gui.jpMainMenu);
 			Main.gui.jfMainWindow.validate();
 			Main.gui.bPlaying = false;
+			Main.pop = new Population(2, 9, 1);
 			
 		}
 		if (ae.getSource() == Main.gui.jbCreateNet) {
@@ -33,7 +34,7 @@ public class ButtonHandler implements ActionListener {
 			Main.gui.bAIPlaying = true;
 			
 			
-			Main.pop = new Population(2, 9, 1);
+			//Main.pop = new Population(2, 9, 1);
 			System.out.println(Main.pop.size());
 			
 			Training training = new Training();

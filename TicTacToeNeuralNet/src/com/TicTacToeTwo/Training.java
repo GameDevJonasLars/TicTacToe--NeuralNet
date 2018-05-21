@@ -35,7 +35,7 @@ public class Training extends Thread {
 	
 	public void  run() {
 		
-		bEinmal = false;
+		bEinmal = true;
 		
 		while (Main.gui.bAIPlaying) {
 			
@@ -76,7 +76,17 @@ public class Training extends Thread {
 				iAIAtTurn = 1;
 			}
 			
-			if(failed1 & failed2 & !bEinmal) {
+			if (iFelderNumAI1 + iFelderNumAI2 == 9) {
+				
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				Main.gui.bAIPlaying = false;
+				
+			} else if(failed1 & failed2 & !bEinmal) {
 				Main.pop = new Population(2, 9, 1);
 				Main.gui.reset();
 				for (int i = 0; i < 9; i++) {
@@ -86,6 +96,8 @@ public class Training extends Thread {
 				for (int i = 0; i < 9; i++) {
 					dInputsAI2.set(i, 0.0);
 				}
+				iFelderNumAI1 = 0;
+				iFelderNumAI2 = 0;
 				failed1 = false;
 				failed2 = false;	
 			
@@ -94,11 +106,11 @@ public class Training extends Thread {
 				if(iFelderNumAI1 < iFelderNumAI2) {
 					Main.gui.reset();
 					
-					Main.pop.setNetwork(0, Main.pop.mutate2(1));
+					Main.pop.setNetwork(0, Main.pop.mutate2(0));
 				} else if (iFelderNumAI1 > iFelderNumAI2){
 					Main.gui.reset();
 					
-					Main.pop.setNetwork(1, Main.pop.mutate2(0));
+					Main.pop.setNetwork(1, Main.pop.mutate2(1));
 				}else {
 					Main.gui.reset();
 					Main.pop.setNetwork(1, Main.pop.mutate2(1));
@@ -113,11 +125,16 @@ public class Training extends Thread {
 					dInputsAI2.set(i, 0.0);
 				}
 				
+				System.out.println(iFelderNumAI1 + iFelderNumAI2);
+				
+				iFelderNumAI1 = 0;
+				iFelderNumAI2 = 0;
+				
 				failed1 = false;
 				failed2 = false;
 			}
 			
-			if (Main.gui.GewinnenTestAI() == 1) {
+			/*if (Main.gui.GewinnenTestAI() == 1) {
 				
 				try {
 					Thread.sleep(1000);
@@ -161,7 +178,7 @@ public class Training extends Thread {
 				Main.pop.setNetwork(0, Main.pop.mutate2(1));
 				
 				bEinmal = true;
-			}
+			}*/
 			
 			try {
 				Thread.sleep(iSpeed);
