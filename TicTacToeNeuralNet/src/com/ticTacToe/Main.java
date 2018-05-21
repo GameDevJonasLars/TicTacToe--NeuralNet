@@ -27,6 +27,8 @@ public class Main implements ActionListener {
 	boolean bPlaying;
 	static Main game;
 
+	
+	//Könntest du die Funktion vlt. umbenenen in createGame oder so das mit Main ist nen bisschen verwirre
 	public Main() {
 		//
 		jfMainWindow = new JFrame("Tic Tac Toe");

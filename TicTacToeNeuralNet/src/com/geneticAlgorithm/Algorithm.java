@@ -12,9 +12,7 @@ public class Algorithm {
 	ArrayList<Integer> alInputNum = new ArrayList<Integer>();
 	ArrayList<Integer> alOutputNum = new ArrayList<Integer>();
 
-	public int createRandomPopulation(int iPopulationSize, int iInputsNum, int iOutputsNum) {
-		alInputNum.add(iInputsNum);
-		alOutputNum.add(iOutputsNum);
+	public void createRandomPopulation(int iPopulationSize, int iInputsNum, int iOutputsNum) {
 
 		for (int i = 0; i < iPopulationSize; i++) {
 
@@ -35,10 +33,14 @@ public class Algorithm {
 			iStructure.add(iOutputsNum);
 
 			population.add(new Network(iStructure));
-			return population.size() - 1;
+			
+			alInputNum.add(iInputsNum);
+			alOutputNum.add(iOutputsNum);
 		}
-		return 0;
-
+	}
+	
+	public void setNetwork (int iIndex, Network net) {
+		population.set(iIndex, net);
 	}
 
 	public int createPopulation(ArrayList<Integer> alNetStruct, int iInputsNum, int iOutputsNum) {
@@ -47,6 +49,10 @@ public class Algorithm {
 		population.add(new Network(alNetStruct));
 		return population.size() - 1;
 
+	}
+	
+	public int size() {
+		return population.size();
 	}
 
 	public void setFitness(int iNetworkNum, double dFitness) {
@@ -132,7 +138,19 @@ public class Algorithm {
 			}
 		}
 		return iNetworkNumCopy;
-
+	}
+	
+	public Network mutate2(int iNetworkNum) {
+		Network NetworkCopy = population.get(iNetworkNum);
+		for (int i = 0; i < population.get(iNetworkNum).lNetwork.size(); i++) {
+			for (int iZ = 0; iZ < population.get(iNetworkNum).lNetwork.get(i).nLayer.size(); iZ++) {
+				for (int iX = 0; iX < population.get(iNetworkNum).lNetwork.get(i).nLayer.get(iZ).cNeuron.size(); iX++) {
+					NetworkCopy.lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight += (Math.random() * 0.2)
+							- 0.1;
+				}
+			}
+		}
+		return NetworkCopy;
 	}
 	
 	public int copyNet(int iNeuralNet) {
