@@ -64,6 +64,28 @@ public class Algorithm {
 		
 	}
 	
+	public Network createRandomNetwork(int iInputsNum, int iOutputsNum) {
+
+		ArrayList<Integer> iStructure = new ArrayList<Integer>();
+		iStructure.add(iInputsNum);
+
+		if (iInputsNum >= 3) {
+			int iLayerNum = (int) (Math.random() * (iInputsNum - 1)) + 2;
+			int iMinNeuronNum = (int) ((iInputsNum * 2) / iLayerNum);
+
+			for (int iZ = 0; iZ <= iLayerNum; iZ++) {
+				iStructure.add((int) (Math.random() * iMinNeuronNum) + iMinNeuronNum);
+			}
+		} else {
+			int iLayerNum = 1;
+			iStructure.add(iInputsNum * 2);
+		}
+		iStructure.add(iOutputsNum);
+			
+		Network net = new Network(iStructure);
+		return net;
+	}
+	
 	public void setNetwork (int iIndex, Network net) {
 		population.set(iIndex, net);
 	}

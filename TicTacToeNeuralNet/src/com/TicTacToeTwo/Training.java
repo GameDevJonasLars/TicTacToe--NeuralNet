@@ -8,13 +8,14 @@ import com.network.Network;
 public class Training extends Thread {
 
 	int iAIAtTurn = 1;
-	int iSpeed = 1;
+	int iSpeed = 100;
 	ArrayList<Double> dInputsAI1;
 	ArrayList<Double> dInputsAI2;
 	boolean failed1;
 	boolean failed2;
 	int iFelderNumAI1;
 	int iFelderNumAI2;
+	boolean bEinmal;
 	
 	public Training() {
 		dInputsAI1 = new ArrayList<Double>();
@@ -34,7 +35,7 @@ public class Training extends Thread {
 	
 	public void  run() {
 		
-		boolean bEinmal = false;
+		bEinmal = false;
 		
 		while (Main.gui.bAIPlaying) {
 			
@@ -48,6 +49,7 @@ public class Training extends Thread {
 					dInputsAI1.set((int) (dResult), 1.0);
 					dInputsAI2.set((int) (dResult), 4.0);
 					iFelderNumAI1++;
+					
 				}else {
 					failed1 = true;
 				}
@@ -65,13 +67,16 @@ public class Training extends Thread {
 					dInputsAI2.set((int) (dResult), 1.0);
 					dInputsAI1.set((int) (dResult), 4.0);
 					iFelderNumAI2++;
+					System.out.println(Main.gui.setFeld((int) (dResult)));
 				}else {
-					failed2 = true;
+					failed2 = true;	
 				}
 				
 				Main.gui.iSpieler = 1;
 				iAIAtTurn = 1;
 			}
+			
+			System.out.println(failed2);
 			
 			if(failed1 & failed2 & !bEinmal) {
 				Main.pop = new Population(2, 9, 1);
@@ -84,7 +89,8 @@ public class Training extends Thread {
 					dInputsAI2.set(i, 0.0);
 				}
 				failed1 = false;
-				failed2 = false;
+				failed2 = false;	
+				System.out.println("hi");
 			} else if(failed1 & failed2) {
 				
 				if(iFelderNumAI1 < iFelderNumAI2) {
@@ -97,7 +103,7 @@ public class Training extends Thread {
 					Main.pop.setNetwork(1, Main.pop.mutate2(0));
 				}else {
 					Main.gui.reset();
-					Main.pop.addRandomNetwork(9, 1);
+					Main.pop.setNetwork(1, Main.pop.createRandomNetwork(9, 1));
 				}
 				
 				for (int i = 0; i < 9; i++) {
@@ -107,6 +113,8 @@ public class Training extends Thread {
 				for (int i = 0; i < 9; i++) {
 					dInputsAI2.set(i, 0.0);
 				}
+				
+				System.out.println("hi2");
 				
 				failed1 = false;
 				failed2 = false;
