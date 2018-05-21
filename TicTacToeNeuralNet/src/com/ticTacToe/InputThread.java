@@ -20,17 +20,26 @@ public class InputThread extends Thread {
 		for (int n = 0; n < 5; n++) {
 			int[] feldZahlen = new int[9];
 			int v = 0;
-
-			for (Feld[] felds : main.getfFelder()) {
-				for (Feld feld : felds) {
-					feldZahlen[v] = feld.getiBesitzer();
-					v++;
+			if (iZeichen == 1) {
+				for (Feld[] felds : main.getfFelder()) {
+					for (Feld feld : felds) {
+						feldZahlen[v] = feld.getiBesitzer();
+						v++;
+					}
 				}
 			}
-			System.out.println(feldZahlen[0]+" "+feldZahlen[1]+" "+feldZahlen[2]);
-			System.out.println(feldZahlen[3]+" "+feldZahlen[4]+" "+feldZahlen[5]);
-			System.out.println(feldZahlen[0]+" "+feldZahlen[7]+" "+feldZahlen[8]);
-			
+			if (iZeichen == -1) {
+				for (Feld[] felds : main.getfFelder()) {
+					for (Feld feld : felds) {
+						feldZahlen[v] = feld.getiBesitzer()*-1;
+						v++;
+					}
+				}
+			}
+			System.out.println(feldZahlen[0] + " " + feldZahlen[1] + " " + feldZahlen[2]);
+			System.out.println(feldZahlen[3] + " " + feldZahlen[4] + " " + feldZahlen[5]);
+			System.out.println(feldZahlen[0] + " " + feldZahlen[7] + " " + feldZahlen[8]);
+
 			while (main.getiSpieler() != iZeichen) {
 				try {
 					Thread.sleep(1);
@@ -39,7 +48,21 @@ public class InputThread extends Thread {
 				}
 			}
 			ArrayList<Double> dInputs = new ArrayList<Double>();
-			dInputs.add((double) (feldZahlen[0]));
+			for (int feldZahl : feldZahlen) {
+				if (feldZahl == 1) {
+					dInputs.add((double) 1);
+					dInputs.add((double) 0);
+				}
+				else if (feldZahl == -1) {
+					dInputs.add((double) 0);
+					dInputs.add((double) 1);
+				}
+				else {
+					dInputs.add((double) 0);
+					dInputs.add((double) 0);
+				}
+			}
+			/*dInputs.add((double) (feldZahlen[0]));
 			dInputs.add((double) (feldZahlen[1]));
 			dInputs.add((double) (feldZahlen[2]));
 			dInputs.add((double) (feldZahlen[3]));
@@ -47,7 +70,7 @@ public class InputThread extends Thread {
 			dInputs.add((double) (feldZahlen[5]));
 			dInputs.add((double) (feldZahlen[6]));
 			dInputs.add((double) (feldZahlen[7]));
-			dInputs.add((double) (feldZahlen[8]));
+			dInputs.add((double) (feldZahlen[8]));*/
 			main.getaGeneticAlg().giveTask(dInputs, iNeural);
 			double dResult = (main.getaGeneticAlg().getResults(iNeural).get(0) + 1) * 4.4;
 			System.out.println(dResult);
