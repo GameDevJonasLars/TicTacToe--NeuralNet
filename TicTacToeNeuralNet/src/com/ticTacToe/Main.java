@@ -127,11 +127,7 @@ public class Main implements ActionListener {
 					if (feld.getiBesitzer() == 0) {
 						feld.setBesitzer(iSpieler);
 						feld.setUsable(false);
-						if (iSpieler == 1) {
-							iSpieler = 4;
-						} else {
-							iSpieler = 1;
-						}
+						iSpieler *= -1;
 						//new GewinnenTest(fFelder).start();
 						
 						return true;
@@ -175,18 +171,14 @@ public class Main implements ActionListener {
 			ArrayList<Integer> struct = new ArrayList<Integer>();
 			struct.add(9);
 			
-			struct.add(10);
-			struct.add(10);
-			struct.add(10);
-			struct.add(10);
-			struct.add(10);
-			struct.add(10);
-			struct.add(10);
+			struct.add(6);
+			struct.add(5);
+			struct.add(3);
 			
 			struct.add(1);
 			iNeuralNet1 = aGeneticAlg.createPopulation(struct,9,1);
 			iNeuralNet2 = aGeneticAlg.createPopulation(struct,9,1);
-			new TrainControlThread(game, iNeuralNet1, iNeuralNet2, 1, 4).start();
+			new TrainControlThread(game, iNeuralNet1, iNeuralNet2, 1, -1).start();
 
 		}
 		if (bPlaying) {
@@ -194,83 +186,47 @@ public class Main implements ActionListener {
 				fFelder[0][0].setBesitzer(iSpieler);
 				fFelder[0][0].setUsable(false);
 				new GewinnenTest(fFelder).start();
-				if (iSpieler == 1) {
-					iSpieler = 4;
-				} else {
-					iSpieler = 1;
-				}
+				iSpieler *= -1;
 			}
 			if (ae.getSource() == fFelder[0][1].getJbFeld()) {
 				fFelder[0][1].setBesitzer(iSpieler);
 				new GewinnenTest(fFelder).start();
-				if (iSpieler == 1) {
-					iSpieler = 4;
-				} else {
-					iSpieler = 1;
-				}
+				iSpieler *= -1;
 			}
 			if (ae.getSource() == fFelder[0][2].getJbFeld()) {
 				fFelder[0][2].setBesitzer(iSpieler);
 				new GewinnenTest(fFelder).start();
-				if (iSpieler == 1) {
-					iSpieler = 4;
-				} else {
-					iSpieler = 1;
-				}
+				iSpieler *= -1;
 			}
 			if (ae.getSource() == fFelder[1][0].getJbFeld()) {
 				fFelder[1][0].setBesitzer(iSpieler);
 				new GewinnenTest(fFelder).start();
-				if (iSpieler == 1) {
-					iSpieler = 4;
-				} else {
-					iSpieler = 1;
-				}
+				iSpieler *= -1;
 			}
 			if (ae.getSource() == fFelder[1][1].getJbFeld()) {
 				fFelder[1][1].setBesitzer(iSpieler);
 				new GewinnenTest(fFelder).start();
-				if (iSpieler == 1) {
-					iSpieler = 4;
-				} else {
-					iSpieler = 1;
-				}
+				iSpieler *= -1;
 			}
 			if (ae.getSource() == fFelder[1][2].getJbFeld()) {
 				fFelder[1][2].setBesitzer(iSpieler);
 				new GewinnenTest(fFelder).start();
-				if (iSpieler == 1) {
-					iSpieler = 4;
-				} else {
-					iSpieler = 1;
-				}
+				iSpieler *= -1;
 			}
 			if (ae.getSource() == fFelder[2][0].getJbFeld()) {
 				fFelder[2][0].setBesitzer(iSpieler);
 				new GewinnenTest(fFelder).start();
-				if (iSpieler == 1) {
-					iSpieler = 4;
-				} else {
-					iSpieler = 1;
-				}
+				iSpieler *= -1;
 			}
 			if (ae.getSource() == fFelder[2][1].getJbFeld()) {
 				fFelder[2][1].setBesitzer(iSpieler);
 				new GewinnenTest(fFelder).start();
-				if (iSpieler == 1) {
-					iSpieler = 4;
-				} else {
-					iSpieler = 1;
-				}
+				iSpieler *= -1;
 			}
 			if (ae.getSource() == fFelder[2][2].getJbFeld()) {
 				fFelder[2][2].setBesitzer(iSpieler);
 				new GewinnenTest(fFelder).start();
-				if (iSpieler == 1) {
-					iSpieler = 4;
-				} else {
-					iSpieler = 1;
-				}
+				iSpieler *= -1;
 			}
 
 		}
