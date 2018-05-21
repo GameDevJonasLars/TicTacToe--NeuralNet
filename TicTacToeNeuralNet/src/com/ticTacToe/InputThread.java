@@ -16,60 +16,46 @@ public class InputThread extends Thread {
 	}
 
 	public void run() {
-		
-		for (int n = 0; n < 9; n++) {
+
+		for (int n = 0; n < 5; n++) {
 			int[] feldZahlen = new int[9];
 			int v = 0;
-			if (iZeichen == 1) {
-				for (Feld[] felds : main.getfFelder()) {
-					for (Feld feld : felds) {
-						if (feld.getiBesitzer() == 1) {
-							feldZahlen[v] = 1;
-						}
-						if (feld.getiBesitzer() == -1) {
-							feldZahlen[v] = -1;
-						}
-						v++;
-					}
-				}
-			} else {
-				for (Feld[] felds : main.getfFelder()) {
-					for (Feld feld : felds) {
-						if (feld.getiBesitzer() == 1) {
-							feldZahlen[v] = -1;
-						}
-						if (feld.getiBesitzer() == -1) {
-							feldZahlen[v] = 1;
-						}
-						v++;
-					}
+
+			for (Feld[] felds : main.getfFelder()) {
+				for (Feld feld : felds) {
+					feldZahlen[v] = feld.getiBesitzer();
+					v++;
 				}
 			}
-			while(main.getiSpieler() != iZeichen) {
+			System.out.println(feldZahlen[0]+" "+feldZahlen[1]+" "+feldZahlen[2]);
+			System.out.println(feldZahlen[3]+" "+feldZahlen[4]+" "+feldZahlen[5]);
+			System.out.println(feldZahlen[0]+" "+feldZahlen[7]+" "+feldZahlen[8]);
+			
+			while (main.getiSpieler() != iZeichen) {
 				try {
 					Thread.sleep(1);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
 			}
-				ArrayList<Double> dInputs = new ArrayList<Double>();
-				dInputs.add((double) (feldZahlen[0]));
-				dInputs.add((double) (feldZahlen[1]));
-				dInputs.add((double) (feldZahlen[2]));
-				dInputs.add((double) (feldZahlen[3]));
-				dInputs.add((double) (feldZahlen[4]));
-				dInputs.add((double) (feldZahlen[5]));
-				dInputs.add((double) (feldZahlen[6]));
-				dInputs.add((double) (feldZahlen[7]));
-				dInputs.add((double) (feldZahlen[8]));
-				main.getaGeneticAlg().giveTask(dInputs, iNeural);
-				double dResult = (main.getaGeneticAlg().getResults(iNeural).get(0) + 1) * 4.4;
-				System.out.println(dResult);
-				if (!main.setFeld((int) dResult)) {
-					main.setiSpieler(main.getiSpieler() * -1);
+			ArrayList<Double> dInputs = new ArrayList<Double>();
+			dInputs.add((double) (feldZahlen[0]));
+			dInputs.add((double) (feldZahlen[1]));
+			dInputs.add((double) (feldZahlen[2]));
+			dInputs.add((double) (feldZahlen[3]));
+			dInputs.add((double) (feldZahlen[4]));
+			dInputs.add((double) (feldZahlen[5]));
+			dInputs.add((double) (feldZahlen[6]));
+			dInputs.add((double) (feldZahlen[7]));
+			dInputs.add((double) (feldZahlen[8]));
+			main.getaGeneticAlg().giveTask(dInputs, iNeural);
+			double dResult = (main.getaGeneticAlg().getResults(iNeural).get(0) + 1) * 4.4;
+			System.out.println(dResult);
+			if (!main.setFeld((int) dResult)) {
+				main.setiSpieler(main.getiSpieler() * -1);
 
-				}
-			
+			}
+
 			try {
 				Thread.sleep(1);
 			} catch (Exception e) {

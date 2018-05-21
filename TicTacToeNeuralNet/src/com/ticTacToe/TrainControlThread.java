@@ -45,10 +45,10 @@ public class TrainControlThread extends Thread {
 			main.jfMainWindow.setTitle("Tic Tac Toe Kreuz: "+iKreuzPunkte+" Kreis: "+iKreisPunkte);
 			System.out.println("Kreis"+iKreisPunkte+"Kreuz"+iKreuzPunkte);
 			if (iKreisPunkte < iKreuzPunkte) {
-				iNeural2 = main.getaGeneticAlg().mutate(iNeural1);
+				iNeural1 = main.getaGeneticAlg().mutate(iNeural1, 6-iKreuzPunkte);
 			}
 			else if(iKreisPunkte > iKreuzPunkte){
-				iNeural1 = main.getaGeneticAlg().mutate(iNeural2);
+				iNeural2 = main.getaGeneticAlg().mutate(iNeural2, 6-iKreisPunkte);
 			}
 			else {
 				/*ArrayList<Integer> struct = new ArrayList<Integer>();
@@ -60,8 +60,8 @@ public class TrainControlThread extends Thread {
 				
 				struct.add(1);
 				iNeural1 = main.getaGeneticAlg().createPopulation(struct, 9, 1);*/
-				iNeural1 = main.getaGeneticAlg().mutate(iNeural1);
-				iNeural2 = main.getaGeneticAlg().mutate(iNeural2);
+				iNeural1 = main.getaGeneticAlg().mutate(iNeural1,1);
+				iNeural2 = main.getaGeneticAlg().mutate(iNeural2,1);
 			}
 			for(Feld[] felds:main.getfFelder()) {
 				for (Feld feld : felds) {
