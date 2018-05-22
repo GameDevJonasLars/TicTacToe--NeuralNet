@@ -1,4 +1,4 @@
-package com.ticTacToe;
+package com.ticTacToeNeunOut;
 
 import java.util.ArrayList;
 
@@ -45,10 +45,10 @@ public class TrainControlThread extends Thread {
 			main.jfMainWindow.setTitle("Tic Tac Toe Kreuz: "+iKreuzPunkte+" Kreis: "+iKreisPunkte);
 			System.out.println("Kreis"+iKreisPunkte+"Kreuz"+iKreuzPunkte);
 			if (iKreisPunkte < iKreuzPunkte) {
-				iNeural2 = main.getaGeneticAlg().mutate(iNeural1, 6-iKreuzPunkte);
+				iNeural2 = main.getaGeneticAlg().mutate(iNeural2, 5-iKreuzPunkte);
 			}
 			else if(iKreisPunkte > iKreuzPunkte){
-				iNeural1 = main.getaGeneticAlg().mutate(iNeural2, 6-iKreisPunkte);
+				iNeural1 = main.getaGeneticAlg().mutate(iNeural1, 5-iKreisPunkte);
 			}
 			else {
 				/*ArrayList<Integer> struct = new ArrayList<Integer>();
