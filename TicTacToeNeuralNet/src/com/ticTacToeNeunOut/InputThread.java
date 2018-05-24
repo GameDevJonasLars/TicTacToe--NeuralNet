@@ -15,6 +15,7 @@ public class InputThread extends Thread {
 		this.iNeural = iNeural;
 	}
 
+	@SuppressWarnings("deprecation")
 	public void run() {
 
 		for (int n = 0; n < 5; n++) {
@@ -85,8 +86,16 @@ public class InputThread extends Thread {
 						para = i;
 					}
 				}
+				if (main.testWin() != 0) {
+					this.destroy();
+				}
 				if(!main.setFeld(fmMatches.get(para).getFeld())){
 					fmMatches.remove(para);
+				}
+				else {
+					if (main.testWin() != 0) {
+						this.destroy();
+					}
 				}
 				
 				
