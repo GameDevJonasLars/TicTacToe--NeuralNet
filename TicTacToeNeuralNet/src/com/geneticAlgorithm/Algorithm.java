@@ -97,6 +97,35 @@ public class Algorithm {
 		return population.size() - 1;
 
 	}
+	public void swapNet(int iNet1, int iNet2) {
+		Network nNet1 = population.get(iNet1);
+		Network nNet2 = population.get(iNet2);
+		Network nNetSwap;
+		int iInput1 = alInputNum.get(iNet1);
+		int iInput2 = alInputNum.get(iNet1);
+		int iInputSwap;
+		int iOutput1 = alOutputNum.get(iNet1);
+		int iOutput2 = alOutputNum.get(iNet2);
+		int iOutputSwap;
+		
+		nNetSwap = nNet1;
+		iInputSwap = iInput1;
+		iOutputSwap = iOutput1;
+		
+		nNet1 = nNet2;
+		iInput1 = iInput2;
+		iOutput1 = iOutput2;
+		
+		nNet2 = nNetSwap;
+		iInput2 = iInputSwap;
+		iOutput2 = iOutputSwap;
+		population.set(iNet1, nNet1);
+		population.set(iNet2, nNet2);
+		alInputNum.set(iNet1, iInput1);
+		alInputNum.set(iNet2, iInput2);
+		alOutputNum.set(iNet1, iOutput1);
+		alOutputNum.set(iNet2, iOutput2);
+	}
 
 	public int size() {
 		return population.size();

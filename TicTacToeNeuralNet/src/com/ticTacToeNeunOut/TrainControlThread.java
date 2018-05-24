@@ -67,8 +67,7 @@ public class TrainControlThread extends Thread {
 				
 				struct.add(1);
 				iNeural1 = main.getaGeneticAlg().createPopulation(struct, 9, 1);*/
-				iNeural2 = main.getaGeneticAlg().mutate(iNeural2,1);
-				iNeural1 = main.getaGeneticAlg().mutate(iNeural1,1);
+				main.getaGeneticAlg().swapNet(iNeural1, iNeural2);
 			}
 			try {
 				Thread.sleep(1);
