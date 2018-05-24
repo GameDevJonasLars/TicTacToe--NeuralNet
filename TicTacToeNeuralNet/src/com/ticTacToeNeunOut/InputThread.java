@@ -72,20 +72,25 @@ public class InputThread extends Thread {
 			dInputs.add((double) (feldZahlen[7]));
 			dInputs.add((double) (feldZahlen[8]));*/
 			main.getaGeneticAlg().giveTask(dInputs, iNeural);
-			double dResult = 0;
-			int iFeld = 0;
+			ArrayList<FeldMatch> fmMatches = new ArrayList<FeldMatch>();
 			for (int i = 0; i < main.getaGeneticAlg().getResults(iNeural).size(); i++) {
-				if (main.getaGeneticAlg().getResults(iNeural).get(i) > dResult) {
-					dResult = main.getaGeneticAlg().getResults(iNeural).get(i);
-					iFeld = i;
+				fmMatches.add(new FeldMatch(i, main.getaGeneticAlg().getResults(iNeural).get(i)));
+			}
+			while(main.getiSpieler() == iZeichen) {
+				double dRes = 0;
+				int para = 0;
+				for (int i=0; i<fmMatches.size();i++) {
+					if (dRes > fmMatches.get(i).getFeldVal()) {
+						dRes = fmMatches.get(i).getFeldVal();
+						para = i;
+					}
 				}
+				if(!main.setFeld(fmMatches.get(para).getFeld())){
+					fmMatches.remove(para);
+				}
+				
+				
 			}
-			System.out.println(dResult);
-			if (!main.setFeld(iFeld)) {
-				main.setiSpieler(main.getiSpieler() * -1);
-
-			}
-
 			try {
 				Thread.sleep(1);
 			} catch (Exception e) {

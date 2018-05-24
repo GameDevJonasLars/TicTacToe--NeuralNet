@@ -69,6 +69,7 @@ public class TrainControlThread extends Thread {
 				}
 				
 			}
+			main.setiSpieler(1);
 			try {
 				Thread.sleep(1);
 			} catch (Exception e) {

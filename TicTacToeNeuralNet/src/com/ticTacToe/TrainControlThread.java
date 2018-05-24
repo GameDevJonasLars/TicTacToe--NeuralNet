@@ -70,6 +70,7 @@ public class TrainControlThread extends Thread {
 				
 			}
 			try {
+				main.setiSpieler(1);
 				Thread.sleep(1);
 			} catch (Exception e) {
 				// TODO: handle exception
