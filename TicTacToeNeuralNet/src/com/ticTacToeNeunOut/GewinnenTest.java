@@ -2,9 +2,10 @@ package com.ticTacToeNeunOut;
 
 public class GewinnenTest extends Thread {
 	Feld fFelder[][];
-
-	public GewinnenTest(Feld fFelder[][]) {
+	Main main;
+	public GewinnenTest(Feld fFelder[][], Main main) {
 		this.fFelder = fFelder;
+		this.main = main;
 	}
 
 	public void run() {
@@ -22,12 +23,19 @@ public class GewinnenTest extends Thread {
 				}
 			}
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 			} catch (Exception e) {
 				e.printStackTrace();
 
 			}
-			System.exit(0);
+			for (Feld[] felds : fFelder) {
+				for (Feld feld : felds) {
+					feld.setBesitzer(0);
+					feld.setUsable(true);
+				}
+			}
+			main.setiSpieler(1);
+			
 		}
 		if (fFelder[0][0].getiBesitzer() + fFelder[0][1].getiBesitzer() + fFelder[0][2].getiBesitzer() == 12
 				|| fFelder[1][0].getiBesitzer() + fFelder[1][1].getiBesitzer() + fFelder[1][2].getiBesitzer() == 12
@@ -43,12 +51,19 @@ public class GewinnenTest extends Thread {
 				}
 			}
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(2000);
 			} catch (Exception e) {
 				e.printStackTrace();
 
 			}
-			System.exit(0);
+			for (Feld[] felds : fFelder) {
+				for (Feld feld : felds) {
+					feld.setBesitzer(0);
+					feld.setUsable(true);
+				}
+			}
+			main.setiSpieler(1);
+			
 
 		}
 

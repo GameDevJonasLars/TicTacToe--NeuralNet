@@ -101,7 +101,7 @@ public class InputThread extends Thread {
 				
 			}
 			try {
-				Thread.sleep(1);
+				Thread.sleep(1000/main.getiSpeed());
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

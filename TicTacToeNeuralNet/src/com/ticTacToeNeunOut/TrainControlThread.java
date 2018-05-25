@@ -8,6 +8,9 @@ public class TrainControlThread extends Thread {
 	int iNeural2;
 	int iZeichen1;
 	int iZeichen2;
+	boolean runing;
+	InputThread itNet1;
+	InputThread itNet2;
 	
 	public TrainControlThread(Main main, int iNeural1, int iNeural2, int iZeichen1, int iZeichen2) {
 		this.main = main;
@@ -15,13 +18,17 @@ public class TrainControlThread extends Thread {
 		this.iNeural2 = iNeural2;
 		this.iZeichen1 = iZeichen1;
 		this.iZeichen2 = iZeichen2;
+		runing = true;
+	}
+	public void delete() {
+		runing = false;
 	}
 	public void run() {
-		while(true) {
+		while(runing) {
 			int iKreuzPunkte = 0;
 			int iKreisPunkte = 0;
-			InputThread itNet1 = new InputThread(main, iNeural1, iZeichen1);
-			InputThread itNet2 = new InputThread(main, iNeural2, iZeichen2);
+			itNet1 = new InputThread(main, iNeural1, iZeichen1);
+			itNet2 = new InputThread(main, iNeural2, iZeichen2);
 			itNet1.start();
 			itNet2.start();
 			try {
@@ -68,9 +75,11 @@ public class TrainControlThread extends Thread {
 				struct.add(1);
 				iNeural1 = main.getaGeneticAlg().createPopulation(struct, 9, 1);*/
 				main.getaGeneticAlg().swapNet(iNeural1, iNeural2);
+				iNeural1 = main.getaGeneticAlg().mutate(iNeural1, 1);
+				iNeural2 = main.getaGeneticAlg().mutate(iNeural2, 1);
 			}
 			try {
-				Thread.sleep(1);
+				Thread.sleep(2000/main.getiSpeed());
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -82,7 +91,7 @@ public class TrainControlThread extends Thread {
 			}
 			main.setiSpieler(1);
 			try {
-				Thread.sleep(1);
+				Thread.sleep(2000/main.getiSpeed());
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
