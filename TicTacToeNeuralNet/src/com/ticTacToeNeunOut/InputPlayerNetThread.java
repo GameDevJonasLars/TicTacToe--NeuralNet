@@ -8,7 +8,7 @@ public class InputPlayerNetThread extends Thread {
 	}
 
 	public void run() {
-		InputThread itThread = new InputThread(main, 0, -1);
+		InputThread itThread = new InputThread(main, 0, main.getiNetSpieler());
 		itThread.start();
 		while (main.testWin() == 0) {
 			

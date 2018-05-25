@@ -21,6 +21,8 @@ public class Main implements ActionListener {
 	JButton jbCreateNet;
 	JButton jbEvolveNet;
 	JButton jbReturn;
+	JButton jbNetX;
+	JButton jbNetO;
 	static JSlider jsSpeed;
 	TrainControlThread tctTrain;
 	Feld fFelder[][];
@@ -30,6 +32,7 @@ public class Main implements ActionListener {
 	int iNeuralNet1;
 	int iNeuralNet2;
 	int iSpeed;
+	int iNetSpieler;
 	boolean bPlaying;
 	static Main game;
 
@@ -47,6 +50,8 @@ public class Main implements ActionListener {
 		jbEvolveNet = new JButton("Play Network");
 		jbLoadNet = new JButton("Load Network");
 		jbReturn = new JButton("Menu");
+		jbNetX = new JButton("X");
+		jbNetO = new JButton("O");
 		jsSpeed = new JSlider(JSlider.HORIZONTAL, 0, 2000, 0);
 		jsSpeed.setMajorTickSpacing(500);
 		jsSpeed.setMinorTickSpacing(1);
@@ -69,12 +74,16 @@ public class Main implements ActionListener {
 		jbEvolveNet.setBounds(345, 250, 300, 50);
 		jbLoadNet.setBounds(345, 350, 300, 50);
 		jbReturn.setBounds(990, 100, 300, 50);
+		jbNetX.setBounds(990, 300, 100, 50);
+		jbNetO.setBounds(1190, 300, 100, 50);
 		jbCreateNet.addActionListener(this);
 		jbEvolveNet.addActionListener(this);
 		jbLoadNet.addActionListener(this);
 		jbLocalSpielen.addActionListener(this);
 		jbNeuralSpielen.addActionListener(this);
 		jbReturn.addActionListener(this);
+		jbNetX.addActionListener(this);
+		jbNetO.addActionListener(this);
 		jpMainMenu.add(jbLocalSpielen);
 		jpMainMenu.add(jbNeuralSpielen);
 		jpNeuralNet.add(jbCreateNet);
@@ -97,12 +106,19 @@ public class Main implements ActionListener {
 		jfMainWindow.repaint();
 		iSpieler = 1;
 		iSpeed = 1;
+		iNetSpieler = 1;
 	}
 	
 	
 
 	public int getiSpeed() {
 		return iSpeed;
+	}
+
+	
+
+	public int getiNetSpieler() {
+		return iNetSpieler;
 	}
 
 
@@ -214,6 +230,8 @@ public class Main implements ActionListener {
 			jfMainWindow.add(jpMainMenu);
 			jfMainWindow.remove(jpMainGame);
 			jpMainGame.remove(jsSpeed);
+			jpMainGame.remove(jbNetX);
+			jpMainGame.remove(jbNetO);
 			jfMainWindow.validate();
 			jfMainWindow.repaint();
 			bPlaying = false;
@@ -222,6 +240,8 @@ public class Main implements ActionListener {
 		if(ae.getSource() == jbEvolveNet) {
 			jfMainWindow.add(jpMainGame);
 			jfMainWindow.remove(jpNeuralNet);
+			jpMainGame.add(jbNetX);
+			jpMainGame.add(jbNetO);
 			jfMainWindow.validate();
 			jfMainWindow.repaint();
 			bPlaying = true;
@@ -273,6 +293,12 @@ public class Main implements ActionListener {
 			tctTrain = new TrainControlThread(game, iNeuralNet1, iNeuralNet2, 1, -1);
 			tctTrain.start();
 
+		}
+		if (ae.getSource() == jbNetX) {
+			iNetSpieler = 1;
+		}
+		if (ae.getSource() == jbNetO) {
+			iNetSpieler = -1;
 		}
 		if (bPlaying) {
 			if (ae.getSource() == fFelder[0][0].getJbFeld()) {
