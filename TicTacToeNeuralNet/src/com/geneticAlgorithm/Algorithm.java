@@ -187,7 +187,7 @@ public class Algorithm {
 
 			return fitness;
 		}
-		return 1000;
+		return -1000;
 	}
 
 	public void automaticEvolve(ArrayList<Double> dInputs, ArrayList<Double> dResults) {
