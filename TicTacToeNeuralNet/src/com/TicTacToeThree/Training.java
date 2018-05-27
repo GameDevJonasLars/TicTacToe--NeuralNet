@@ -14,6 +14,8 @@ public class Training extends Thread {
 	boolean failed2;
 	int iFelderNumAI1;
 	int iFelderNumAI2;
+	int iPunkteAI1;
+	int iPunkteAI2;
 	
 	public Training() {
 		dInputsAI1 = new ArrayList<Double>();
@@ -91,7 +93,7 @@ public class Training extends Thread {
 				
 				Main.gui.reset();
 				
-				Main.pop.setNetwork(1, Main.pop.mutate2(1));
+				iPunkteAI1 ++;
 				
 			}else if (Main.gui.GewinnenTestAI() == 4) {
 				
@@ -111,9 +113,26 @@ public class Training extends Thread {
 				
 				Main.gui.reset();
 				
-				Main.pop.setNetwork(0, Main.pop.mutate2(0));
+				iPunkteAI2 ++;
+				
+			}else if (iFelderNumAI1 + iFelderNumAI2 == 9) {
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				
+				for (int i = 0; i < 9; i++) {
+					dInputsAI1.set(i, 0.0);
+				}
+				
+				for (int i = 0; i < 9; i++) {
+					dInputsAI2.set(i, 0.0);
+				}
+				
+				Main.gui.reset();
 			}
-			System.out.println(Main.gui.iSpeed);
+			
 			try {
 				Thread.sleep(Main.gui.iSpeed);
 			} catch (InterruptedException e) {
