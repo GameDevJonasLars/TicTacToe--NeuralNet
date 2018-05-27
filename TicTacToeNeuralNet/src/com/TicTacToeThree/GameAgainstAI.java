@@ -15,7 +15,7 @@ public class GameAgainstAI extends Thread {
 	
 	public void  run() {
 		
-		while (Main.gui.bAIPlaying) {
+		while (Main.gui.bAIPlayingAgPL) {
 			
 			Main.gui.jfMainWindow.validate();
 			Main.gui.jfMainWindow.repaint();

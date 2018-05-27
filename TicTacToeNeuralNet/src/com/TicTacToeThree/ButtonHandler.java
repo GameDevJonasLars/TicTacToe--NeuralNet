@@ -49,7 +49,7 @@ public class ButtonHandler implements ActionListener {
 			Main.gui.jfMainWindow.validate();
 			Main.gui.jfMainWindow.repaint();
 			Main.gui.bPlaying = true;
-			Main.gui.bAIPlaying = true;
+			Main.gui.bAIPlayingAgPL = true;
 			
 			for (Feld[] felds : Main.gui.fFelder) {
 				for (Feld feld : felds) {
@@ -69,6 +69,8 @@ public class ButtonHandler implements ActionListener {
 			Main.gui.jfMainWindow.validate();
 			Main.gui.jfMainWindow.repaint();
 			Main.gui.bAIPlaying = false;
+			Main.gui.bAIPlayingAgPL = false;
+			Main.gui.bPlaying = false;
 			Main.gui.reset();
 			Main.gui.iSpieler = 1;
 			for (Feld[] felds : Main.gui.fFelder) {

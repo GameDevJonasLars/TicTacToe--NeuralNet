@@ -28,6 +28,7 @@ public class Gui {
 	int iSpieler;
 	boolean bPlaying;
 	boolean bAIPlaying;
+	boolean bAIPlayingAgPL;
 
 	public Gui() {
 		//
