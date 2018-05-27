@@ -39,7 +39,7 @@ public class Main implements ActionListener {
 	// Könntest du die Funktion vlt. umbenenen in createGame oder so das mit Main
 	// ist nen bisschen verwirre
 	public Main() {
-		//
+		
 		jfMainWindow = new JFrame("Tic Tac Toe");
 		jpNeuralNet = new JPanel();
 		jpMainMenu = new JPanel();

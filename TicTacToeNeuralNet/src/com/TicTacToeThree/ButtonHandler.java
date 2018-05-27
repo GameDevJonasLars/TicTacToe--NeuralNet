@@ -1,4 +1,4 @@
-package com.TicTacToeTwo;
+package com.TicTacToeThree;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +29,7 @@ public class ButtonHandler implements ActionListener {
 		if (ae.getSource() == Main.gui.jbCreateNet) {
 			Main.gui.jfMainWindow.add(Main.gui.jpMainGame);
 			Main.gui.jfMainWindow.remove(Main.gui.jpNeuralNet);
+			Main.gui.jpMainGame.add(Main.gui.jsSpeed);
 			Main.gui.jfMainWindow.validate();
 			Main.gui.bPlaying = false;
 			Main.gui.bAIPlaying = true;
