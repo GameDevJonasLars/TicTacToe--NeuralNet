@@ -20,8 +20,8 @@ public class Algorithm {
 			iStructure.add(iInputsNum);
 
 			if (iInputsNum >= 3) {
-				int iLayerNum = (int) (Math.random() * (iInputsNum - 1)) + 2;
-				int iMinNeuronNum = (int) ((iInputsNum * 2) / iLayerNum);
+				int iLayerNum = (int) (Math.random() * (iInputsNum + 2)) + 4;
+				int iMinNeuronNum = (int) ((iInputsNum * 2) / iLayerNum) + 1;
 
 				for (int iZ = 0; iZ <= iLayerNum; iZ++) {
 					iStructure.add((int) (Math.random() * iMinNeuronNum) + iMinNeuronNum);
@@ -199,7 +199,7 @@ public class Algorithm {
 		for (int i = 0; i < population.get(iNetworkNum).lNetwork.size(); i++) {
 			for (int iZ = 0; iZ < population.get(iNetworkNum).lNetwork.get(i).nLayer.size(); iZ++) {
 				for (int iX = 0; iX < population.get(iNetworkNum).lNetwork.get(i).nLayer.get(iZ).cNeuron.size(); iX++) {
-					NetworkCopy.lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight += (Math.random() * 0.2) - 0.1;
+					NetworkCopy.lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight += (Math.random() * 0.02) - 0.01;
 					if (population.get(iNetworkNum).lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight > 1.0) {
 						population.get(iNetworkNum).lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight = 1.0;
 					} else if (population.get(iNetworkNum).lNetwork.get(i).nLayer.get(iZ).cNeuron

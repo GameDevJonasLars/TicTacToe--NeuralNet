@@ -106,11 +106,11 @@ public class Training extends Thread {
 				if(iFelderNumAI1 < iFelderNumAI2) {
 					Main.gui.reset();
 					
-					Main.pop.setNetwork(0, Main.pop.mutate2(1));
+					Main.pop.setNetwork(0, Main.pop.mutate2(0));
 				} else if (iFelderNumAI1 > iFelderNumAI2){
 					Main.gui.reset();
 					
-					Main.pop.setNetwork(1, Main.pop.mutate2(0));
+					Main.pop.setNetwork(1, Main.pop.mutate2(1));
 				}else {
 					Main.gui.reset();
 					Main.pop.setNetwork(1, Main.pop.mutate2(1));
