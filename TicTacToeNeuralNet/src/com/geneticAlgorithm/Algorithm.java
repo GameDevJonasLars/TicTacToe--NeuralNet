@@ -97,6 +97,35 @@ public class Algorithm {
 		return population.size() - 1;
 
 	}
+	public void swapNet(int iNet1, int iNet2) {
+		Network nNet1 = population.get(iNet1);
+		Network nNet2 = population.get(iNet2);
+		Network nNetSwap;
+		int iInput1 = alInputNum.get(iNet1);
+		int iInput2 = alInputNum.get(iNet1);
+		int iInputSwap;
+		int iOutput1 = alOutputNum.get(iNet1);
+		int iOutput2 = alOutputNum.get(iNet2);
+		int iOutputSwap;
+		
+		nNetSwap = nNet1;
+		iInputSwap = iInput1;
+		iOutputSwap = iOutput1;
+		
+		nNet1 = nNet2;
+		iInput1 = iInput2;
+		iOutput1 = iOutput2;
+		
+		nNet2 = nNetSwap;
+		iInput2 = iInputSwap;
+		iOutput2 = iOutputSwap;
+		population.set(iNet1, nNet1);
+		population.set(iNet2, nNet2);
+		alInputNum.set(iNet1, iInput1);
+		alInputNum.set(iNet2, iInput2);
+		alOutputNum.set(iNet1, iOutput1);
+		alOutputNum.set(iNet2, iOutput2);
+	}
 
 	public int size() {
 		return population.size();
@@ -174,14 +203,14 @@ public class Algorithm {
 
 	}
 
-	public int mutate(int iNetworkNum, int iStrength) {
+	public int mutate(int iNetworkNum, double iStrength) {
 		int iNetworkNumCopy = copyNet(iNetworkNum);
 		for (int i = 0; i < population.get(iNetworkNumCopy).lNetwork.size(); i++) {
 			for (int iZ = 0; iZ < population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.size(); iZ++) {
 				for (int iX = 0; iX < population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.get(iZ).cNeuron
 						.size(); iX++) {
 					population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.get(iZ).cNeuron
-							.get(iX).dWeight += (Math.random() * (0.1 * iStrength)) - (0.05 * iStrength);
+							.get(iX).dWeight += (Math.random() * (0.01 * iStrength)) - (0.005 * iStrength);
 					if (population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight > 1.0) {
 						population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.get(iZ).cNeuron.get(iX).dWeight = 1.0;
 					} else if (population.get(iNetworkNumCopy).lNetwork.get(i).nLayer.get(iZ).cNeuron

@@ -1,4 +1,4 @@
-package com.ticTacToe;
+package com.ticTacToeNeunOut;
 
 import java.util.ArrayList;
 
@@ -8,6 +8,9 @@ public class TrainControlThread extends Thread {
 	int iNeural2;
 	int iZeichen1;
 	int iZeichen2;
+	boolean runing;
+	InputThread itNet1;
+	InputThread itNet2;
 	
 	public TrainControlThread(Main main, int iNeural1, int iNeural2, int iZeichen1, int iZeichen2) {
 		this.main = main;
@@ -15,13 +18,17 @@ public class TrainControlThread extends Thread {
 		this.iNeural2 = iNeural2;
 		this.iZeichen1 = iZeichen1;
 		this.iZeichen2 = iZeichen2;
+		runing = true;
+	}
+	public void delete() {
+		runing = false;
 	}
 	public void run() {
-		while(true) {
+		while(runing) {
 			int iKreuzPunkte = 0;
 			int iKreisPunkte = 0;
-			InputThread itNet1 = new InputThread(main, iNeural1, iZeichen1);
-			InputThread itNet2 = new InputThread(main, iNeural2, iZeichen2);
+			itNet1 = new InputThread(main, iNeural1, iZeichen1);
+			itNet2 = new InputThread(main, iNeural2, iZeichen2);
 			itNet1.start();
 			itNet2.start();
 			try {
@@ -42,13 +49,20 @@ public class TrainControlThread extends Thread {
 				}
 				
 			}
+			if (main.testWin() == 1) {
+				iKreuzPunkte += 4;
+			}
+			else if (main.testWin() == -1) {
+				iKreisPunkte +=4;
+			}
+			iKreuzPunkte--;
 			main.jfMainWindow.setTitle("Tic Tac Toe Kreuz: "+iKreuzPunkte+" Kreis: "+iKreisPunkte);
 			System.out.println("Kreis"+iKreisPunkte+"Kreuz"+iKreuzPunkte);
 			if (iKreisPunkte < iKreuzPunkte) {
-				iNeural2 = main.getaGeneticAlg().mutate(iNeural1, 6-iKreuzPunkte);
+				iNeural2 = main.getaGeneticAlg().mutate(iNeural2, 10);
 			}
 			else if(iKreisPunkte > iKreuzPunkte){
-				iNeural1 = main.getaGeneticAlg().mutate(iNeural2, 6-iKreisPunkte);
+				iNeural1 = main.getaGeneticAlg().mutate(iNeural1, 10);
 			}
 			else {
 				/*ArrayList<Integer> struct = new ArrayList<Integer>();
@@ -60,8 +74,14 @@ public class TrainControlThread extends Thread {
 				
 				struct.add(1);
 				iNeural1 = main.getaGeneticAlg().createPopulation(struct, 9, 1);*/
-				iNeural2 = main.getaGeneticAlg().mutate(iNeural2,0.1);
-				iNeural1 = main.getaGeneticAlg().mutate(iNeural1,0.1);
+				main.getaGeneticAlg().swapNet(iNeural1, iNeural2);
+				iNeural1 = main.getaGeneticAlg().mutate(iNeural1, 1);
+				iNeural2 = main.getaGeneticAlg().mutate(iNeural2, 1);
+			}
+			try {
+				Thread.sleep(2000/main.getiSpeed());
+			} catch (Exception e) {
+				// TODO: handle exception
 			}
 			for(Feld[] felds:main.getfFelder()) {
 				for (Feld feld : felds) {
@@ -69,9 +89,9 @@ public class TrainControlThread extends Thread {
 				}
 				
 			}
+			main.setiSpieler(1);
 			try {
-				main.setiSpieler(1);
-				Thread.sleep(1);
+				Thread.sleep(2000/main.getiSpeed());
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
