@@ -152,8 +152,6 @@ public class Training extends Thread {
 				
 				Main.gui.reset();
 			}
-			System.out.println("AI1:" + iPunkteAI1);
-			System.out.println("AI1:" + iPunkteAI2);
 			
 			if (iPunkteAI1 == 8) {
 				Main.pop.setNetwork(1, Main.pop.createRandomNetwork(9, 9));

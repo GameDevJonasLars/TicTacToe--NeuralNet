@@ -10,11 +10,7 @@ public class GameAgainstAI extends Thread {
 	int iFelderNumAI1;
 	
 	public GameAgainstAI() {
-		dInputsAI1 = new ArrayList<Double>();
 		
-		for (int i = 0; i < 9; i++) {
-			dInputsAI1.add(0.0);
-		}
 	}
 	
 	public void  run() {
@@ -104,6 +100,21 @@ public class GameAgainstAI extends Thread {
 				
 				Main.gui.bPlaying = false;
 				
+				dInputsAI1 = new ArrayList<Double>();
+				for (Feld[] felds : Main.gui.getfFelder()) {
+					for (Feld feld : felds) {
+						if (feld.getiBesitzer() == 1) {
+							dInputsAI1.add(1.0);
+						}
+						else if (feld.getiBesitzer() == 4) {
+							dInputsAI1.add(-1.0);
+						}
+						else if (feld.getiBesitzer() == 0) {
+							dInputsAI1.add(0.0);
+						}
+					}
+				}
+				
 				Main.pop.giveTask(dInputsAI1, 0);
 				ArrayList<Double> dOutPuts = new ArrayList<Double>();
 				dOutPuts = Main.pop.getResults(0);
@@ -115,7 +126,6 @@ public class GameAgainstAI extends Thread {
 					int iResult = dOutPuts.indexOf(ArrayListFunktions.maxD(dOutPuts));
 					
 					if (Main.gui.setFeld(iResult)) {
-						dInputsAI1.set(iResult, 1.0);
 						
 						iFelderNumAI1++;
 						AI1Playing = false;
