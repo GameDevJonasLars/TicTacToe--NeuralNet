@@ -21,6 +21,7 @@ public class Gui {
 	JButton jbLoadNet;
 	JButton jbCreateNet;
 	JButton jbEvolveNet;
+	JButton jbReturn;
 	Feld fFelder[][];
 	int iSpeed;
 	JSlider jsSpeed;
@@ -36,9 +37,10 @@ public class Gui {
 		jpMainGame = new JPanel();
 		jbLocalSpielen = new JButton("Multiplayer");
 		jbNeuralSpielen = new JButton("Neural Net");
-		jbCreateNet = new JButton("Create Network");
-		jbEvolveNet = new JButton("Evolve Network");
+		jbCreateNet = new JButton("Evolve Population");
+		jbEvolveNet = new JButton("Play against Network");
 		jbLoadNet = new JButton("Load Network");
+		jbReturn = new JButton("Back to Menu");
 		jfMainWindow.setResizable(false);
 		jfMainWindow.setDefaultCloseOperation(jfMainWindow.EXIT_ON_CLOSE);
 		jpMainGame.setLayout(null);
@@ -51,11 +53,13 @@ public class Gui {
 		jbCreateNet.setBounds(345, 150, 300, 50);
 		jbEvolveNet.setBounds(345, 250, 300, 50);
 		jbLoadNet.setBounds(345, 350, 300, 50);
+		jbReturn.setBounds(990, 100, 300, 50);
 		jbCreateNet.addActionListener(new ButtonHandler());
 		jbEvolveNet.addActionListener(new ButtonHandler());
 		jbLoadNet.addActionListener(new ButtonHandler());
 		jbLocalSpielen.addActionListener(new ButtonHandler());
 		jbNeuralSpielen.addActionListener(new ButtonHandler());
+		jbReturn.addActionListener(new ButtonHandler());
 		jpMainMenu.add(jbLocalSpielen);
 		jpMainMenu.add(jbNeuralSpielen);
 		jpNeuralNet.add(jbCreateNet);
@@ -69,6 +73,7 @@ public class Gui {
 		jsSpeed.setBounds(990, 200, 300, 50);
 		Font font = new Font("Serif", Font.ITALIC, 15);
 		jsSpeed.setFont(font);
+		jsSpeed.addChangeListener(new ChangeListenerSlider());
 
 		fFelder = new Feld[3][3];
 		for (int i = 0; i < 3; i++) {
@@ -182,13 +187,25 @@ public class Gui {
 					feld.setUsable(false);
 				}
 			}
+			
+			Main.gui.jfMainWindow.validate();
+			Main.gui.jfMainWindow.repaint();
+			
 			try {
 				Thread.sleep(1000);
 			} catch (Exception e) {
 				e.printStackTrace();
 
 			}
-			System.exit(0);
+			Main.gui.jfMainWindow.add(Main.gui.jpMainMenu);
+			Main.gui.jfMainWindow.remove(Main.gui.jpMainGame);
+			Main.gui.jpMainGame.remove(Main.gui.jsSpeed);
+			Main.gui.jpMainGame.remove(Main.gui.jbReturn);
+			Main.gui.jfMainWindow.validate();
+			Main.gui.jfMainWindow.repaint();
+			Main.gui.bAIPlaying = false;
+			Main.gui.reset();
+			Main.gui.iSpieler = 1;
 		}
 		if (fFelder[0][0].getiBesitzer() + fFelder[0][1].getiBesitzer() + fFelder[0][2].getiBesitzer() == 12
 				|| fFelder[1][0].getiBesitzer() + fFelder[1][1].getiBesitzer() + fFelder[1][2].getiBesitzer() == 12
@@ -203,13 +220,25 @@ public class Gui {
 					feld.setUsable(false);
 				}
 			}
+			
+			Main.gui.jfMainWindow.validate();
+			Main.gui.jfMainWindow.repaint();
+			
 			try {
 				Thread.sleep(1000);
 			} catch (Exception e) {
 				e.printStackTrace();
 
 			}
-			System.exit(0);
+			Main.gui.jfMainWindow.add(Main.gui.jpNeuralNet);
+			Main.gui.jfMainWindow.remove(Main.gui.jpMainGame);
+			Main.gui.jpMainGame.remove(Main.gui.jsSpeed);
+			Main.gui.jpMainGame.remove(Main.gui.jbReturn);
+			Main.gui.jfMainWindow.validate();
+			Main.gui.jfMainWindow.repaint();
+			Main.gui.bAIPlaying = false;
+			Main.gui.reset();
+			Main.gui.iSpieler = 1;
 		}
 	}
 }

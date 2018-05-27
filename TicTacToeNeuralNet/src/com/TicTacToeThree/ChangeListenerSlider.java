@@ -5,9 +5,9 @@ import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
 public class ChangeListenerSlider implements ChangeListener{
-	Main main;
-	public ChangeListenerSlider(Main main) {
-		this.main = main;
+	
+	public ChangeListenerSlider() {
+		
 	}
 	public void stateChanged(ChangeEvent e) {
 		JSlider source = (JSlider)e.getSource();

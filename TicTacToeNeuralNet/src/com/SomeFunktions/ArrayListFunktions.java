@@ -26,5 +26,19 @@ public class ArrayListFunktions {
 		return max;	
 	}
 	
+	public static ArrayList<Double> removeMaxD (ArrayList<Double> iList) {
+		double max = 0.0;
+		
+		for (int i = 0; i < iList.size(); i++) {
+			if (iList.get(i) > max) {
+				max = i;
+			}
+		}
+		
+		iList.remove(max);
+		
+		return iList;	
+	}
+	
 
 }
