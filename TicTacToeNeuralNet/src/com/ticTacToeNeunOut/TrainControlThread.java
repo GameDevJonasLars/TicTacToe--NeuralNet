@@ -79,7 +79,7 @@ public class TrainControlThread extends Thread {
 				iNeural2 = main.getaGeneticAlg().mutate(iNeural2, 1);
 			}
 			try {
-				Thread.sleep(2000/main.getiSpeed());
+				Thread.sleep(2000-main.getiSpeed());
 			} catch (Exception e) {
 				// TODO: handle exception
 			}
@@ -91,7 +91,7 @@ public class TrainControlThread extends Thread {
 			}
 			main.setiSpieler(1);
 			try {
-				Thread.sleep(2000/main.getiSpeed());
+				Thread.sleep(2000-main.getiSpeed());
 			} catch (Exception e) {
 				// TODO: handle exception
 			}

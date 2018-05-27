@@ -36,8 +36,8 @@ public class Main implements ActionListener {
 	boolean bPlaying;
 	static Main game;
 
-	
-	//Könntest du die Funktion vlt. umbenenen in createGame oder so das mit Main ist nen bisschen verwirre
+	// Könntest du die Funktion vlt. umbenenen in createGame oder so das mit Main
+	// ist nen bisschen verwirre
 	public Main() {
 		//
 		jfMainWindow = new JFrame("Tic Tac Toe");
@@ -108,72 +108,53 @@ public class Main implements ActionListener {
 		iSpeed = 1;
 		iNetSpieler = 1;
 	}
-	
-	
 
 	public int getiSpeed() {
 		return iSpeed;
 	}
 
-	
-
 	public int getiNetSpieler() {
 		return iNetSpieler;
 	}
-
-
 
 	public Feld[][] getfFelder() {
 		return fFelder;
 	}
 
-
-
-
 	public Algorithm getaGeneticAlg() {
 		return aGeneticAlg;
 	}
-
-
 
 	public int getiSpieler() {
 		return iSpieler;
 	}
 
-
-
 	public boolean isbPlaying() {
 		return bPlaying;
 	}
-	
-	
+
 	public static Main getGame() {
 		return game;
 	}
-
-	
 
 	public void setiSpieler(int iSpieler) {
 		this.iSpieler = iSpieler;
 	}
 
-
-
 	public boolean setFeld(int iFeld) {
 		int n = 0;
 		for (Feld[] felds : fFelder) {
 			for (Feld feld : felds) {
-				
+
 				if (iFeld == n) {
 					if (feld.getiBesitzer() == 0) {
 						feld.setBesitzer(iSpieler);
 						feld.setUsable(false);
 						iSpieler *= -1;
-						//new GewinnenTest(fFelder).start();
-						
+						// new GewinnenTest(fFelder).start();
+
 						return true;
-					}
-					else {
+					} else {
 						return false;
 					}
 				}
@@ -182,7 +163,7 @@ public class Main implements ActionListener {
 		}
 		return false;
 	}
-	
+
 	public int testWin() {
 		if (fFelder[0][0].getiBesitzer() + fFelder[0][1].getiBesitzer() + fFelder[0][2].getiBesitzer() == 3
 				|| fFelder[1][0].getiBesitzer() + fFelder[1][1].getiBesitzer() + fFelder[1][2].getiBesitzer() == 3
@@ -214,9 +195,22 @@ public class Main implements ActionListener {
 			}
 			return -1;
 		}
-		return 0;
-	}
+		int iUnentschieden = 1;
+		for (Feld[] felds : fFelder) {
+			for (Feld feld : felds) {
+				iUnentschieden *= feld.getiBesitzer();
+			}
+		}
+		if (iUnentschieden != 0) {
+			for (Feld[] felds : fFelder) {
+				for (Feld feld : felds) {
+					feld.setUsable(false);
+				}
+			}
+			return 2;
+		}return 0;
 
+}
 
 	public static void main(String[] args) {
 		game = new Main();
@@ -350,6 +344,5 @@ public class Main implements ActionListener {
 
 		}
 	}
-	
 
 }
