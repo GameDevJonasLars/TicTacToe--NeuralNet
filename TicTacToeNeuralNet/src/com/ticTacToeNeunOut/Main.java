@@ -107,6 +107,17 @@ public class Main implements ActionListener {
 		iSpieler = 1;
 		iSpeed = 1;
 		iNetSpieler = 1;
+		
+		ArrayList<Integer> struct = new ArrayList<Integer>();
+		struct.add(18);
+		struct.add(306);
+		struct.add(463);
+		struct.add(344);
+		struct.add(356);
+		struct.add(387);
+		struct.add(9);
+		iNeuralNet1 = aGeneticAlg.createPopulation(struct,18,1);
+		iNeuralNet2 = aGeneticAlg.createPopulation(struct,18,1);
 	}
 
 	public int getiSpeed() {
@@ -216,6 +227,8 @@ public class Main implements ActionListener {
 		game = new Main();
 		jsSpeed.addChangeListener(new ChangeListenerSlider(game));
 		game.jfMainWindow.add(game.jpMainMenu);
+		
+		
 		// game.gtGewinnen.start();
 	}
 
@@ -272,18 +285,7 @@ public class Main implements ActionListener {
 			jfMainWindow.repaint();
 			bPlaying = false;
 			jpMainGame.add(jsSpeed);
-			ArrayList<Integer> struct = new ArrayList<Integer>();
-			struct.add(18);
 			
-
-			struct.add(16);
-			
-			struct.add(20);
-
-			
-			struct.add(9);
-			iNeuralNet1 = aGeneticAlg.createPopulation(struct,18,1);
-			iNeuralNet2 = aGeneticAlg.createPopulation(struct,18,1);
 			tctTrain = new TrainControlThread(game, iNeuralNet1, iNeuralNet2, 1, -1);
 			tctTrain.start();
 

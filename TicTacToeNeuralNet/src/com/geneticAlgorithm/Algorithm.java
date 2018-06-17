@@ -21,10 +21,10 @@ public class Algorithm {
 
 			if (iInputsNum >= 3) {
 				int iLayerNum = (int) (Math.random() * (iInputsNum + 2)) + 4;
-				int iMinNeuronNum = (int) ((iInputsNum * 2) / iLayerNum) + 1;
+				int iMinNeuronNum = (int) ((iInputsNum * 3) / iLayerNum) + 1;
 
 				for (int iZ = 0; iZ <= iLayerNum; iZ++) {
-					iStructure.add((int) (Math.random() * iMinNeuronNum) + iMinNeuronNum);
+					iStructure.add((int) (Math.random() * (iMinNeuronNum * 350)) + iMinNeuronNum);
 				}
 			} else {
 				int iLayerNum = 1;
@@ -49,7 +49,7 @@ public class Algorithm {
 			int iMinNeuronNum = (int) ((iInputsNum * 2) / iLayerNum);
 
 			for (int iZ = 0; iZ <= iLayerNum; iZ++) {
-				iStructure.add((int) (Math.random() * iMinNeuronNum) + iMinNeuronNum);
+				iStructure.add((int) (Math.random() * (iMinNeuronNum * 350)) + iMinNeuronNum);
 			}
 		} else {
 			int iLayerNum = 1;
